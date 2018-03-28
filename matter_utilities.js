@@ -3,6 +3,7 @@ var Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
     Bodies = Matter.Bodies,
+    Body = Matter.Body,
     Constraint = Matter.Constraint;
 
 var engine, render, world;
@@ -69,5 +70,42 @@ function deleteBody(theBody) {
             return;
         }
     }
-    Matter.World.remove(world, theBody);
+    World.remove(world, theBody);
 }
+
+/* The following functions are taken from Matter JS directly.
+For more Body. functionalities go to http://brm.io/matter-js/docs/classes/Body.html 
+TODO: Check to see if the graphics of the objects remain unaffected by these changes.
+*/
+
+// Matter JS Function for rotating an existing body.
+function rotateBody(body, rotation, [point]) {
+    Body.rotate(body, rotation, [point]);
+}
+
+// Matter JS Function for scaling an existing body.
+function scaleBody(body, scaleX, scaleY, [point]) {
+    Body.scale(body, scaleX, scaleY, [point]);
+}
+
+// Matter JS Function for hitting an existing body.
+function applyForceToBody(body, position, force) {
+    Body.applyForce(body, position, force);
+}
+
+// Matter JS Function for moving instantly an existing body.
+function setPositionOfBody(body, position) {
+    Body.setPosition(body, position);
+}
+
+// Matter JS Function for making an existing object static or not.
+function setStaticToBody(body, isStatic) {
+    Body.setStatic(body, isStatic);
+}
+
+// Matter JS Function for moving an existing object.
+function translateBody(body, translation) {
+    Body.translate(body, translation);
+}
+
+// ----------------------------------------------------------------------------

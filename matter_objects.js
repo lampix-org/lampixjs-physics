@@ -50,6 +50,8 @@ function ObjectRectangle(x, y, w, h, options) {
         this.hasPNG = newPNG;
         this.show();
     }
+
+    return this.body;
 }
 
 // This is a circular object. Caution!
@@ -100,6 +102,8 @@ function ObjectCircular(cx, cy, r, options) {
         this.hasPNG = newPNG;
         this.show();
     }
+
+    return this.body;
 }
 
 // This is a circular object. Caution!
@@ -128,4 +132,6 @@ function ObjectConstraint(bA, bB, options) {
 
         pop();
     }
+
+    return this.constraint;
 }
