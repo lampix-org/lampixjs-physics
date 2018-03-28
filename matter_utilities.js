@@ -4,7 +4,8 @@ var Engine = Matter.Engine,
     World = Matter.World,
     Bodies = Matter.Bodies,
     Body = Matter.Body,
-    Constraint = Matter.Constraint;
+    Constraint = Matter.Constraint,
+    Composite = Matter.Composites;
 
 var engine, render, world;
 var worldObjects = [];
@@ -55,6 +56,15 @@ function createCircular(cx, cy, r, options) {
     return newObject;
 }
 
+// Call this to create a 5+ sided object.
+function createPolygon(x, y, sides, r, options) {
+    var newObject = ObjectPolygon(x, y, sides, r, options);
+    worldObjects.push(newObject);
+
+    return newObject;
+}
+
+// Call this to make a line linking 2 bodies together.
 function createConstraint(bodyA, bodyB, options) {
     var newObject = ObjectConstraint(bodyA, bodyB, options);
     worldObjects.push(newObject);
