@@ -65,9 +65,9 @@ function createConstraint(bodyA, bodyB, options) {
 function deleteBody(theBody) {
     for(var x = worldObjects.length - 1; x > 0; x--) {
         if(theBody.bodyID === worldObjects[x].bodyID) {
-            worldObjects.splice(x);
+            worldObjects.splice(x, 1);
             return;
         }
     }
-    Matter.Composite.remove(world, theBody)
+    Matter.World.remove(world, theBody);
 }
