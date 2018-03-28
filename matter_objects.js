@@ -1,13 +1,18 @@
 // Here you can find a couple of Matter JS objects.
 
+var bodyID = 0;
+
 // This is a rectangle. Use it wisely.
 function ObjectRectangle(x, y, w, h, options) {
     this.body = Bodies.rectangle(x, y, w, h, options);
     var hasPNG = null;
+    // Allocating a body ID to the object so that we can find it later.
+    this.bodyID = bodyID;
+    bodyID++;
 
     this.show = function () {
         var pos = this.body.position;
-        var angle = this.body.position;
+        var angle = this.body.angle;
 
         push();
 
@@ -51,10 +56,13 @@ function ObjectRectangle(x, y, w, h, options) {
 function ObjectCircular(cx, cy, r, options) {
     this.body = Bodies.circle(cx, cy, r, options);
     var hasPNG = null;
+    // Allocating a body ID to the object so that we can find it later.
+    this.bodyID = bodyID;
+    bodyID++;
 
     this.show = function () {
         var pos = this.body.position;
-        var angle = this.body.position;
+        var angle = this.body.angle;
 
         push();
 
@@ -91,5 +99,33 @@ function ObjectCircular(cx, cy, r, options) {
     this.setPNG = function (newPNG) {
         this.hasPNG = newPNG;
         this.show();
+    }
+}
+
+// This is a circular object. Caution!
+function ObjectConstraint(bA, bB, options) {
+    this.constraint = Constraint.create({
+        bodyA: bA,
+        bodyB: bB,
+        options 
+    });
+    // Allocating a body ID to the object so that we can find it later.
+    this.bodyID = bodyID;
+    bodyID++;
+
+    this.show = function () {
+        var pos1 = this.bA.position;
+        var pos2 = this.bB.position;
+        var angle = this.body.angle;
+
+        push();
+
+        rotate(angle);
+        beginPath();
+        moveTo(pos1.x, pos1.y);
+        lineTo(pos2.x, pos2.y);
+        stroke();
+
+        pop();
     }
 }

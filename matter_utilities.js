@@ -2,7 +2,8 @@
 var Engine = Matter.Engine,
     Render = Matter.Render,
     World = Matter.World,
-    Bodies = Matter.Bodies;
+    Bodies = Matter.Bodies,
+    Constraint = Matter.Constraint;
 
 var engine, render, world;
 var worldObjects = [];
@@ -51,4 +52,22 @@ function createCircular(cx, cy, r, options) {
     worldObjects.push(newObject);
 
     return newObject;
+}
+
+function createConstraint(bodyA, bodyB, options) {
+    var newObject = ObjectConstraint(bodyA, bodyB, options);
+    worldObjects.push(newObject);
+
+    return newObject;
+}
+
+// This function is called when you want to remove a body from the world.
+function deleteBody(theBody) {
+    for(var x = worldObjects.length - 1; x > 0; x--) {
+        if(theBody.bodyID === worldObjects[x].bodyID) {
+            worldObjects.splice(x);
+            return;
+        }
+    }
+    Matter.Composite.remove(world, theBody)
 }
