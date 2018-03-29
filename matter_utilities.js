@@ -9,9 +9,12 @@ var Engine = Matter.Engine,
 
 var engine, render, world;
 var worldObjects = [];
+// Hardcoded screen size for Lampix.
+var screenWidth = 1280;
+var screenHeight = 800;
 
 function setup() {
-    createCanvas(1280, 800);
+    createCanvas(screenWidth, screenHeight);
     engine = Engine.create();
     render = Render.create({
         element: document.body,
@@ -76,11 +79,24 @@ function createConstraint(bodyA, bodyB, options) {
 function deleteBody(theBody) {
     for(var x = worldObjects.length - 1; x > 0; x--) {
         if(theBody.bodyID === worldObjects[x].bodyID) {
+            World.remove(world, theBody);
             worldObjects.splice(x, 1);
             return;
         }
     }
-    World.remove(world, theBody);
+}
+
+// This function can be used to check if a body is currently withing the screen bounds.
+// Returns true if the object is on screen and false if it isn't.
+function checkOnScreen(theBody) {
+    var pos = theBody.position;
+    // TODO: Find out what body.position gives back, is it the center of the body or a corner? which corner?
+    if(pos.y < 0 || pos.y > screenHeight || pos.x < 0 || pos.x > screenWidth) {
+        // TODO: Adjust this check for a generally accepted use case.
+        return false;
+    }
+
+    return true;
 }
 
 /* The following functions are taken from Matter JS directly.
