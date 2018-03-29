@@ -10,24 +10,6 @@ function ObjectRectangle(x, y, w, h, options) {
     this.bodyID = bodyID;
     bodyID++;
 
-    this.show = function () {
-        var pos = this.body.position;
-        var angle = this.body.angle;
-
-        push();
-
-        translate(pos.x, pos.y);
-        rotate(angle);
-        rectMode(CENTER);
-        if(hasPNG) {
-            drawImage(hasPNG, 0, 0, w, h);
-        } else {
-            rect(0, 0, w, h);
-        }
-
-        pop();
-    }
-
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
     this.setFriction = function (newFriction) {
@@ -57,6 +39,24 @@ function ObjectRectangle(x, y, w, h, options) {
     }
 
     return this.body;
+}
+
+ObjectRectangle.prototype.show = function() {
+    var pos = this.body.position;
+    var angle = this.body.angle;
+
+    push();
+
+    translate(pos.x, pos.y);
+    rotate(angle);
+    rectMode(CENTER);
+    if(hasPNG) {
+        drawImage(hasPNG, 0, 0, w, h);
+    } else {
+        rect(0, 0, w, h);
+    }
+
+    pop();
 }
 
 // This is a circular object. Caution!
@@ -67,24 +67,6 @@ function ObjectCircular(cx, cy, r, options) {
     this.bodyID = bodyID;
     bodyID++;
 
-    this.show = function () {
-        var pos = this.body.position;
-        var angle = this.body.angle;
-
-        push();
-
-        translate(pos.x, pos.y);
-        rotate(angle);
-        rectMode(CENTER);
-        if(hasPNG) {
-            drawImage(hasPNG, 0, 0, cx + r, cy + r);
-        } else {
-            ellipse(0, 0, r * 2);
-        }
-
-        pop();
-    }
-
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
     this.setFriction = function (newFriction) {
@@ -116,6 +98,24 @@ function ObjectCircular(cx, cy, r, options) {
     return this.body;
 }
 
+ObjectCircular.prototype.show = function() {
+    var pos = this.body.position;
+    var angle = this.body.angle;
+
+    push();
+
+    translate(pos.x, pos.y);
+    rotate(angle);
+    rectMode(CENTER);
+    if(hasPNG) {
+        drawImage(hasPNG, 0, 0, cx + r, cy + r);
+    } else {
+        ellipse(0, 0, r * 2);
+    }
+
+    pop();
+}
+
 // This is a Polygon! It's Polymisterious.
 function ObjectPolygon(x, y, sides, r, options) {
     this.body = Bodies.polygon(x, y, sides, r, options);
@@ -123,24 +123,6 @@ function ObjectPolygon(x, y, sides, r, options) {
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
-
-    this.show = function () {
-        var pos = this.body.position;
-        var angle = this.body.angle;
-
-        push();
-
-        translate(pos.x, pos.y);
-        rotate(angle);
-        rectMode(CENTER);
-        if(hasPNG) {
-            drawImage(hasPNG, 0, 0, w, h);
-        } else {
-            rect(0, 0, w, h);
-        }
-
-        pop();
-    }
 
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
@@ -170,6 +152,24 @@ function ObjectPolygon(x, y, sides, r, options) {
     }
 
     return this.body;
+}
+
+ObjectPolygon.prototype.show = function() {
+    var pos = this.body.position;
+    var angle = this.body.angle;
+
+    push();
+
+    translate(pos.x, pos.y);
+    rotate(angle);
+    rectMode(CENTER);
+    if(hasPNG) {
+        drawImage(hasPNG, 0, 0, w, h);
+    } else {
+        rect(0, 0, w, h);
+    }
+
+    pop();
 }
 
 // This is a constraint.Very dangerous!
@@ -189,25 +189,25 @@ function ObjectConstraint(options) {
     this.bodyID = bodyID;
     bodyID++;
 
-    this.show = function () {
-        // TODO: Find out if this code is correct.
-        var pos1 = options.bodyA.position;
-        var pos2 = options.bodyB.position;
-
-        push();
-
-        beginPath();
-        moveTo(pos1);
-        lineTo(pos2);
-        stroke();
-
-        pop();
-    }
-
     // TODO: Implement this for objects that have no PNG but other graphics.
     this.setGraphics = function (mystery, variables) {
 
     }
 
     return this.constraint;
+}
+
+ObjectConstraint.prototype.show = function() {
+    // TODO: Find out if this code is correct.
+    var pos1 = options.bodyA.position;
+    var pos2 = options.bodyB.position;
+
+    push();
+
+    beginPath();
+    moveTo(pos1);
+    lineTo(pos2);
+    stroke();
+
+    pop();
 }
