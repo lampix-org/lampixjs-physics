@@ -173,27 +173,32 @@ function ObjectPolygon(x, y, sides, r, options) {
 }
 
 // This is a constraint.Very dangerous!
-function ObjectConstraint(bA, bB, options) {
-    this.constraint = Constraint.create({
-        bodyA: bA,
-        bodyB: bB,
-        options 
-    });
+function ObjectConstraint(options) {
+    /* Possible structure of options:
+    options = {
+        bodyA: any body object,
+        bodyB: any other body,
+        pointA: { x: , y: } just an offset for the first point if you don't want the constraint to start
+        from the middle of the first object,
+        pointB: { x: , y: } the same as above but for the second object,
+        length: pixels you want for the line,
+        stiffness: 0 for very elastic, 1 for very stiff
+    }*/
+    this.constraint = Constraint.create(options);
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
 
     this.show = function () {
-        var pos1 = this.bA.position;
-        var pos2 = this.bB.position;
-        var angle = this.body.angle;
+        // TODO: Find out 
+        var pos1 = options.bodyA.position;
+        var pos2 = options.bodyB.position;
 
         push();
 
-        rotate(angle);
         beginPath();
-        moveTo(pos1.x, pos1.y);
-        lineTo(pos2.x, pos2.y);
+        moveTo(pos1);
+        lineTo(pos2);
         stroke();
 
         pop();

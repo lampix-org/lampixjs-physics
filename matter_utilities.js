@@ -68,8 +68,8 @@ function createPolygon(x, y, sides, r, options) {
 }
 
 // Call this to make a line linking 2 bodies together.
-function createConstraint(bodyA, bodyB, options) {
-    var newObject = ObjectConstraint(bodyA, bodyB, options);
+function createConstraint(options) {
+    var newObject = ObjectConstraint(options);
     worldObjects.push(newObject);
 
     return newObject;
