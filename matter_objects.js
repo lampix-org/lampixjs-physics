@@ -190,7 +190,7 @@ function ObjectConstraint(options) {
     bodyID++;
 
     this.show = function () {
-        // TODO: Find out 
+        // TODO: Find out if this code is correct.
         var pos1 = options.bodyA.position;
         var pos2 = options.bodyB.position;
 
