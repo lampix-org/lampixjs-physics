@@ -14,12 +14,12 @@ var screenWidth = 1280;
 var screenHeight = 800;
 
 function setup() {
-    createCanvas(screenWidth, screenHeight);
+    // createCanvas(screenWidth, screenHeight);
     engine = Engine.create();
-    render = Render.create({
-        element: document.body,
-        engine: engine
-    });
+    // render = Render.create({
+    //     element: document.body,
+    //     engine: engine
+    // });
     world = engine.world;
     // We disable the Gravity from the start, not needed for Lampix.
     world.gravity.y = 0;
@@ -86,7 +86,28 @@ function deleteBody(theBody) {
     }
 }
 
-// This function can be used to check if a body is currently withing the screen bounds.
+// This can be used to check if a certain space within the world is occupied with another body or not.
+function checkIfSpaceOccupied(cx, cy, approximateRange) {
+    var newBounds = {
+        min = {
+            x: cx - approximateRange,
+            y: cy - approximateRange
+        },
+        max = {
+            x: cx + approximateRange,
+            y: cy + approximateRange
+        }
+    }
+    worldObjects.forEach(element => {
+        if (Bounds.overlaps(element.bounds, newBounds)) {
+            return true;
+        }
+    });
+
+    return false;
+}
+
+// This function can be used to check if a body is currently within the screen bounds.
 // Returns true if the object is on screen and false if it isn't.
 function checkOnScreen(theBody) {
     var pos = theBody.position;
