@@ -1,6 +1,13 @@
 // Here you can find a couple of Matter JS objects.
 
+// Global Body ID. Starts at 0 and gets iterated with each new body made.
 var bodyID = 0;
+
+
+// TODO: Create a parent Matter Object class that all the other Objects can inherit (used to reduce code).
+function MatterObject() {
+
+}
 
 // This is a rectangle. Use it wisely.
 function ObjectRectangle(x, y, w, h, options) {
@@ -9,6 +16,23 @@ function ObjectRectangle(x, y, w, h, options) {
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
+    this.noGraphics = false;
+    this.w = w;
+    this.h = h;
+    // Used for scaling animations. Is by default True.
+    this.complete = true;
+
+    this.setScaleOverTime = function (onX, onY, [point], deltaT) {
+        this.complete = false;
+        this.animSteps = deltaT;
+        this.toScaleX = onX / deltaT;
+        this.toScaleY = onY / deltaT;
+        if(point === undefined) {
+            this.point = point;
+        } else {
+            this.point = null;
+        }
+    }
 
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
@@ -30,7 +54,6 @@ function ObjectRectangle(x, y, w, h, options) {
     // Sets a PNG photo for the object and then calls the show function.
     this.setPNG = function (newPNG) {
         this.hasPNG = newPNG;
-        this.show();
     }
 
     // TODO: Implement this for objects that have no PNG but other graphics.
@@ -38,25 +61,38 @@ function ObjectRectangle(x, y, w, h, options) {
 
     }
 
-    return this.body;
+    // Used to disable the show() function.
+    this.setNoGraphics = function () {
+        this.noGraphics = true;
+    }
+
+    return this;
 }
 
 ObjectRectangle.prototype.show = function() {
+    if(this.noGraphics) {
+        return;
+    }
     var pos = this.body.position;
     var angle = this.body.angle;
 
-    push();
-
-    translate(pos.x, pos.y);
-    rotate(angle);
-    rectMode(CENTER);
-    if(hasPNG) {
-        drawImage(hasPNG, 0, 0, w, h);
+    globalContext.translate(pos.x, pos.y);
+    globalContext.rotate(angle);
+    if(this.hasPNG) {
+        globalContext.drawImage(this.hasPNG, 0, 0, this.w, this.h);
     } else {
-        rect(0, 0, w, h);
+        globalContext.rect(0, 0, this.w, this.h);
     }
+}
 
-    pop();
+ObjectRectangle.prototype.update = function() {
+    if (!this.complete) {
+        this.animSteps--;
+        scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);
+        if(this.animSteps == 0) {
+            this.complete = true;
+        }
+    }
 }
 
 // This is a circular object. Caution!
@@ -66,6 +102,24 @@ function ObjectCircular(cx, cy, r, options) {
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
+    this.noGraphics = false;
+    this.cx = cx;
+    this.cy = cy;
+    this.r = r;
+    // Used for scaling animations. Is by default True.
+    this.complete = true;
+
+    this.setScaleOverTime = function (onX, onY, [point], deltaT) {
+        this.complete = false;
+        this.animSteps = deltaT;
+        this.toScaleX = onX / deltaT;
+        this.toScaleY = onY / deltaT;
+        if(point === undefined) {
+            this.point = point;
+        } else {
+            this.point = null;
+        }
+    }
 
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
@@ -87,7 +141,6 @@ function ObjectCircular(cx, cy, r, options) {
     // Sets a PNG photo for the object and then calls the show function.
     this.setPNG = function (newPNG) {
         this.hasPNG = newPNG;
-        this.show();
     }
 
     // TODO: Implement this for objects that have no PNG but other graphics.
@@ -95,25 +148,39 @@ function ObjectCircular(cx, cy, r, options) {
 
     }
 
-    return this.body;
+    // Used to disable the show() function.
+    this.setNoGraphics = function () {
+        this.noGraphics = true;
+    }
+
+    return this;
 }
 
 ObjectCircular.prototype.show = function() {
+    if(this.noGraphics) {
+        return;
+    }
     var pos = this.body.position;
     var angle = this.body.angle;
 
-    push();
-
-    translate(pos.x, pos.y);
-    rotate(angle);
-    rectMode(CENTER);
-    if(hasPNG) {
-        drawImage(hasPNG, 0, 0, cx + r, cy + r);
+    globalContext.translate(pos.x, pos.y);
+    globalContext.rotate(angle);
+    if(this.hasPNG) {
+        globalContext.drawImage(this.hasPNG, 0, 0, this.cx + this.r, this.cy + this.r);
     } else {
-        ellipse(0, 0, r * 2);
+        globalContext.ellipse(0, 0, this.r * 2);
     }
 
-    pop();
+}
+
+ObjectCircular.prototype.update = function() {
+    if (!this.complete) {
+        this.animSteps--;
+        scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);
+        if(this.animSteps == 0) {
+            this.complete = true;
+        }
+    }
 }
 
 // This is a Polygon! It's Polymisterious.
@@ -123,6 +190,17 @@ function ObjectPolygon(x, y, sides, r, options) {
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
+    this.noGraphics = false;
+    this.x = x;
+    this.y = y;
+    this.r = r;
+
+    // Used for a growing constraint, TODO.
+    if (options && options.growOver) {
+        this.complete = false;
+        this.animSteps = options.growOver;
+        this.animStep = this.animSteps;
+    }
 
     // Sets the amount of friction that this body will exert on others.
     // 0 for no friction, 1 for very high friction.
@@ -151,25 +229,41 @@ function ObjectPolygon(x, y, sides, r, options) {
 
     }
 
-    return this.body;
+    // Used to disable the show() function.
+    this.setNoGraphics = function () {
+        this.noGraphics = true;
+    }
+
+    return this;
 }
 
 ObjectPolygon.prototype.show = function() {
+    if(this.noGraphics) {
+        return;
+    }
     var pos = this.body.position;
     var angle = this.body.angle;
 
-    push();
-
-    translate(pos.x, pos.y);
-    rotate(angle);
-    rectMode(CENTER);
+    globalContext.translate(pos.x, pos.y);
+    globalContext.rotate(angle);
     if(hasPNG) {
-        drawImage(hasPNG, 0, 0, w, h);
+        globalContext.drawImage(this.hasPNG, 0, 0, this.hasPNG.width, this.hasPNG.height);
     } else {
-        rect(0, 0, w, h);
+        // TODO: Figure out how to draw a Polygon.
+        // globalContext.rect(0, 0, w, h);
     }
 
-    pop();
+}
+
+ObjectPolygon.prototype.update = function() {
+    if (options && options.growOver !== null ) {
+        if (this.animStep > 0) {
+            this.animStep--;
+        } else {
+            this.complete = true;
+        }
+        // TODO: Change object properties accordingly.
+    }
 }
 
 // This is a constraint.Very dangerous!
@@ -185,29 +279,66 @@ function ObjectConstraint(options) {
         stiffness: 0 for very elastic, 1 for very stiff
     }*/
     this.constraint = Constraint.create(options);
+    this.color = options.color;
     // Allocating a body ID to the object so that we can find it later.
     this.bodyID = bodyID;
     bodyID++;
+    this.noGraphics = false;
+
+    // Used for a growing constraint, TODO.
+    if (options.growOver != null ) {
+        this.complete = false;
+        this.animSteps = options.growOver;
+        this.animStep = this.animSteps;
+    }
+
+    // Used to define how much the constraint will oscilate in length upon forces applied to the connected bodies.
+    this.setDamping = function(newDamping) {
+        this.constraint.damping = newDamping;
+    }
+
+    // Used to change how fast a modified constraint returns to its original length.
+    this.setStiffness = function(newStiffness) {
+        this.constraint.stiffness = newStiffness;
+    }
 
     // TODO: Implement this for objects that have no PNG but other graphics.
     this.setGraphics = function (mystery, variables) {
 
     }
 
-    return this.constraint;
+    // Used to disable the show() function.
+    this.setNoGraphics = function () {
+        this.noGraphics = true;
+    }
+
+    return this;
 }
 
 ObjectConstraint.prototype.show = function() {
+    if(this.noGraphics) {
+        return;
+    }
     // TODO: Find out if this code is correct.
-    var pos1 = options.bodyA.position;
-    var pos2 = options.bodyB.position;
+    var pos1 = options.pointA;
+    var pos2 = options.pointB;
 
-    push();
+    globalContext.beginPath();
+    globalContext.moveTo(pos1);
+    globalContext.lineTo(pos2);
+    globalContext.lineWidth = 4;
+    globalContext.strokeStyle = color;
+    globalContext.stroke();
 
-    beginPath();
-    moveTo(pos1);
-    lineTo(pos2);
-    stroke();
+}
 
-    pop();
+ObjectConstraint.prototype.update = function() {
+    if (options && options.growOver !== null) {
+        if (this.animStep > 0) {
+            this.animStep--;
+        } else {
+            this.complete = true;
+        }
+        // TODO: Change object properties accordingly.
+    }
 }
