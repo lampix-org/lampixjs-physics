@@ -3,7 +3,6 @@
 // Global Body ID. Starts at 0 and gets iterated with each new body made.
 var bodyID = 0;
 
-
 // TODO: Create a parent Matter Object class that all the other Objects can inherit (used to reduce code).
 function MatterObject() {
 
@@ -20,10 +19,10 @@ function ObjectRectangle(x, y, w, h, options) {
     this.w = w;
     this.h = h;
     // Used for scaling animations. Is by default True.
-    this.complete = true;
+    this.growComplete = true;
 
     this.setScaleOverTime = function (onX, onY, [point], deltaT) {
-        this.complete = false;
+        this.growComplete = false;
         this.animSteps = deltaT;
         this.toScaleX = onX / deltaT;
         this.toScaleY = onY / deltaT;
@@ -86,11 +85,11 @@ ObjectRectangle.prototype.show = function() {
 }
 
 ObjectRectangle.prototype.update = function() {
-    if (!this.complete) {
+    if (!this.growComplete) {
         this.animSteps--;
         scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);
         if(this.animSteps == 0) {
-            this.complete = true;
+            this.growComplete = true;
         }
     }
 }
@@ -107,10 +106,10 @@ function ObjectCircular(cx, cy, r, options) {
     this.cy = cy;
     this.r = r;
     // Used for scaling animations. Is by default True.
-    this.complete = true;
+    this.growComplete = true;
 
     this.setScaleOverTime = function (onX, onY, [point], deltaT) {
-        this.complete = false;
+        this.growComplete = false;
         this.animSteps = deltaT;
         this.toScaleX = onX / deltaT;
         this.toScaleY = onY / deltaT;
@@ -174,11 +173,11 @@ ObjectCircular.prototype.show = function() {
 }
 
 ObjectCircular.prototype.update = function() {
-    if (!this.complete) {
+    if (!this.growComplete) {
         this.animSteps--;
         scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);
         if(this.animSteps == 0) {
-            this.complete = true;
+            this.growComplete = true;
         }
     }
 }
@@ -195,11 +194,19 @@ function ObjectPolygon(x, y, sides, r, options) {
     this.y = y;
     this.r = r;
 
-    // Used for a growing constraint, TODO.
-    if (options && options.growOver) {
-        this.complete = false;
-        this.animSteps = options.growOver;
-        this.animStep = this.animSteps;
+    // Used for scaling animations. Is by default True.
+    this.growComplete = true;
+
+    this.setScaleOverTime = function (onX, onY, [point], deltaT) {
+        this.growComplete = false;
+        this.animSteps = deltaT;
+        this.toScaleX = onX / deltaT;
+        this.toScaleY = onY / deltaT;
+        if(point === undefined) {
+            this.point = point;
+        } else {
+            this.point = null;
+        }
     }
 
     // Sets the amount of friction that this body will exert on others.
@@ -256,13 +263,12 @@ ObjectPolygon.prototype.show = function() {
 }
 
 ObjectPolygon.prototype.update = function() {
-    if (options && options.growOver !== null ) {
-        if (this.animStep > 0) {
-            this.animStep--;
-        } else {
-            this.complete = true;
+    if (!this.growComplete) {
+        this.animSteps--;
+        scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);
+        if(this.animSteps == 0) {
+            this.growComplete = true;
         }
-        // TODO: Change object properties accordingly.
     }
 }
 
@@ -287,7 +293,7 @@ function ObjectConstraint(options) {
 
     // Used for a growing constraint, TODO.
     if (options.growOver != null ) {
-        this.complete = false;
+        this.growComplete = false;
         this.animSteps = options.growOver;
         this.animStep = this.animSteps;
     }
@@ -333,12 +339,11 @@ ObjectConstraint.prototype.show = function() {
 }
 
 ObjectConstraint.prototype.update = function() {
-    if (options && options.growOver !== null) {
-        if (this.animStep > 0) {
-            this.animStep--;
-        } else {
-            this.complete = true;
+    if (!this.growComplete) {
+        this.animSteps--;
+        // TODO: Implement correct grow methodology for Constraints.
+        if(this.animSteps == 0) {
+            this.growComplete = true;
         }
-        // TODO: Change object properties accordingly.
     }
 }
