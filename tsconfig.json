@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "es2015",
+    "target": "ES2017",
+    "declaration": true,
+    "allowJs": false,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "moduleResolution": "node"
+  },
+  "exclude": [
+    "node_modules",
+    "lib"
+  ]
+}
