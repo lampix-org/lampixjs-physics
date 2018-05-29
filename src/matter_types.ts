@@ -24,7 +24,7 @@ export type Circle = {
 
 // Attractor to attracted object map. Also includes the Min and Max distance for orbits.
 // If Orbits are left undefined, object will automatically stick together.
-export type aTAMObject = [{
+export type aTAMObject = {
   attractor: MatterBody,
   orbitMin?: number,
   orbitMax?: number,
@@ -33,7 +33,7 @@ export type aTAMObject = [{
     customOrbit?: number,
     stopAttraction?: boolean
   }]
-}];
+};
 
 export type matterSetupObject = {
   width: number, 
@@ -70,8 +70,19 @@ export interface polygonBodyOptions extends basicBodyOptions {
 
 // Options for creating a Matter Constraint.
 export interface constraintOptions {
-  options: object;
+  options: matterConstraintOptions;
   color: string;
   growOver: number;
   animSteps: number;
 }
+
+// Possible structure of options for creating a Constraint with Matter JS.
+export type matterConstraintOptions = {
+  bodyA: Matter.Body; // any body object.
+  bodyB: Matter.Body;// any other body.
+  pointA: { x: number, y: number}; // just an offset for the first point if you don't want the constraint to start
+                      // from the middle of the first object.
+  pointB: { x: number, y: number}; // the same as above but for the second object,
+  length: number; // pixels you want for the line.
+  stiffness: number;// 0 for very elastic, 1 for very stiff.
+};

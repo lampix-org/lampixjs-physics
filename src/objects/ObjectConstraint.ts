@@ -3,9 +3,9 @@ import { Constraint } from 'matter-js';
 import { MatterObjects } from './MatterObjects';
 import { MatterSetup } from './../utils/MatterSetup';
 
-// This is a constraint.Very dangerous!
+// You can use a constraint to "tie" two matter objects together, similar to a spring.
 export class ObjectConstraint {
-  /* Possible structure of options:
+  /* Possible structure of options for creating a Constraint with Matter JS:
   options = {
     bodyA: any body object,
     bodyB: any other body,

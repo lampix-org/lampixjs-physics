@@ -13,7 +13,7 @@ const Render = Matter.Render;
 // Optional: The noWalls variable is used to disable canvas border walls.
 export class MatterSetup {
   static globalContext: any;
-  static aTAM: aTAMObject;
+  static aTAM: aTAMObject[] = [];
   static setup: matterSetupObject;
   static engine: any;
   static world: any;

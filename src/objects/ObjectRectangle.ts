@@ -17,14 +17,14 @@ export class ObjectRectangle extends MatterBody {
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
-  objectShow(thePNG: string) {
+  objectShow(thePNG?: HTMLCanvasElement) {
     const pos: XYPos = this.body.position;
     console.log('Is the position correct? ', pos);
     const angle: number = this.body.angle;
 
     MatterSetup.globalContext.translate(pos.x, pos.y);
     MatterSetup.globalContext.rotate(angle);
-    if (thePNG !== undefined) {
+    if (thePNG) {
       MatterSetup.globalContext.drawImage(thePNG, 0, 0, this.w, this.h);
     } else {
       MatterSetup.globalContext.rect(0, 0, this.w, this.h);
