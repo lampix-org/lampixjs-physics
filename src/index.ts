@@ -1,2 +1,2 @@
-import * as MatterUtilities from 'matter_utilities';
+import { MatterUtilities } from './utils/index';
 export default MatterUtilities;
