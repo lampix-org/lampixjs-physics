@@ -1,2 +1,2 @@
-import { MatterUtilities } from './utils/index';
-export default MatterUtilities;
+import { MatterSetup } from './utils/MatterSetup';
+export default MatterSetup;

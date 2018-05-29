@@ -1,4 +1,4 @@
-import { MatterBody } from 'matter_objects';
+import { MatterBody } from 'objects/MatterBody';
 
 // Simple X,Y point.
 export type XYPos = {
