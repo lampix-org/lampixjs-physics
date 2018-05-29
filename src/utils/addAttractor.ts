@@ -12,5 +12,4 @@ export function addAttractor(attractorBody: MatterBody) {
     attractor: attractorBody
   };
   MatterSetup.aTAM.push(newHierarchy);
-  // console.log(aTAM);
 }

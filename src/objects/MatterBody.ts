@@ -1,13 +1,13 @@
 import { GlobalObject } from './GlobalObject';
 import { MatterObjects } from './MatterObjects';
-import { XYPos, basicBodyOptions } from 'matter_types';
+import { XYPos, BasicBodyOptions, MatterBodyOptions } from 'matter_types';
 import { scaleBody } from 'utils/scaleBody';
 
 // Base Matter Object that extends all others below.
 export class MatterBody extends GlobalObject {
   x: number;
   y: number;
-  matterOptions: object;
+  matterOptions: MatterBodyOptions;
   myID: number;
   // In case objects should scale, these are the attributes needed.
   growComplete: boolean = true;
@@ -16,11 +16,8 @@ export class MatterBody extends GlobalObject {
   toScaleY: number;
   point: XYPos;
   
-  constructor(theOptions: basicBodyOptions) {
+  constructor(theOptions: BasicBodyOptions) {
     super();
-    this.x = theOptions.x;
-    this.y = theOptions.y;
-    this.matterOptions = theOptions.matterOptions;
     // Allocating a body ID to the object so that we can find it later.
     this.myID = MatterObjects.bodyID;
     MatterObjects.bodyID = MatterObjects.bodyID + 1;
@@ -28,7 +25,7 @@ export class MatterBody extends GlobalObject {
   
   // Used to update the object. For now you can update the object scale in case such an animation over time is desired.
   // Make sure you don't forget to scale the graphics with it as well.
-  objectUpdate() {
+  update() {
     if (!this.growComplete) {
       this.animSteps = this.animSteps - 1;
       scaleBody(this.body, this.toScaleX, this.toScaleY, this.point);

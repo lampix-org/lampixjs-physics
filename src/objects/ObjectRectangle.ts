@@ -1,14 +1,14 @@
 import { MatterBody } from './MatterBody';
-import { rectangleBodyOptions, XYPos } from 'matter_types';
+import { RectangleBodyOptions, XYPos } from 'matter_types';
 import { Bodies } from 'matter-js';
-import { MatterSetup } from './../utils/MatterSetup';
+import { MatterSetup } from 'utils/MatterSetup';
 
 // This is a rectangle. Use it wisely.
 export class ObjectRectangle extends MatterBody {
   w: number;
   h: number;
 
-  constructor(theOptions: rectangleBodyOptions) {
+  constructor(theOptions: RectangleBodyOptions) {
     super(theOptions);
     this.w = theOptions.w;
     this.h = theOptions.h;
@@ -17,9 +17,10 @@ export class ObjectRectangle extends MatterBody {
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
-  objectShow(thePNG?: HTMLCanvasElement) {
+  show(thePNG?: HTMLCanvasElement) {
+    const invariant = require('invariant');
+    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos: XYPos = this.body.position;
-    console.log('Is the position correct? ', pos);
     const angle: number = this.body.angle;
 
     MatterSetup.globalContext.translate(pos.x, pos.y);

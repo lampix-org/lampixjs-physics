@@ -13,7 +13,6 @@ export function addAttracted(attractedBody: MatterBody, attractorID: number, cus
       if (customOrbit !== undefined) {
         newAttracted.customOrbit = customOrbit;
       }
-      // console.log(newAttracted);
       MatterSetup.aTAM[x].attracted.push(newAttracted);
       return;
     }

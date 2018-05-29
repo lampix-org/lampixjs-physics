@@ -1,20 +1,10 @@
-import { constraintOptions, XYPos } from 'matter_types';
+import { ConstraintOptions, XYPos } from 'matter_types';
 import { Constraint } from 'matter-js';
 import { MatterObjects } from './MatterObjects';
-import { MatterSetup } from './../utils/MatterSetup';
+import { MatterSetup } from 'utils/MatterSetup';
 
 // You can use a constraint to "tie" two matter objects together, similar to a spring.
 export class ObjectConstraint {
-  /* Possible structure of options for creating a Constraint with Matter JS:
-  options = {
-    bodyA: any body object,
-    bodyB: any other body,
-    pointA: { x: , y: } just an offset for the first point if you don't want the constraint to start
-    from the middle of the first object,
-    pointB: { x: , y: } the same as above but for the second object,
-    length: pixels you want for the line,
-    stiffness: 0 for very elastic, 1 for very stiff
-  }*/
 
   color: string;
   growOver: number;
@@ -24,7 +14,7 @@ export class ObjectConstraint {
   constraint: any;
   bodyID: number;
 
-  constructor(theOptions: constraintOptions) {
+  constructor(theOptions: ConstraintOptions) {
     this.color = theOptions.color;
     this.growOver = theOptions.growOver;
     this.animSteps = theOptions.animSteps;
@@ -52,8 +42,10 @@ export class ObjectConstraint {
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
-  objectShow() {
+  show() {
     // TODO: Find out if this code is correct.
+    const invariant = require('invariant');
+    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos1: XYPos = this.constraint.pointA;
     const pos2: XYPos = this.constraint.pointB;
 
@@ -65,7 +57,7 @@ export class ObjectConstraint {
     MatterSetup.globalContext.stroke();
   }
 
-  objectUpdate() {
+  update() {
     if (!this.growComplete) {
       this.animSteps = this.animSteps - 1;
       // TODO: Implement correct grow methodology for Constraints.

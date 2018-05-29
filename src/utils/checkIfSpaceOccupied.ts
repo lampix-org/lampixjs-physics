@@ -15,7 +15,6 @@ export function checkIfSpaceOccupied(theOptions: Circle) {
     }
   };
   for (let j: number = 0; j < MatterSetup.worldObjects.length; j = j + 1) {
-    // console.log(worldObjects[j]);
     if (MatterSetup.worldObjects[j].body !== undefined) {
       if (Bounds.overlaps(MatterSetup.worldObjects[j].body.bounds, newBounds)) {
         return true;

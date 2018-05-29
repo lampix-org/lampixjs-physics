@@ -1,14 +1,14 @@
 import { MatterBody } from './MatterBody';
-import { polygonBodyOptions } from 'matter_types';
+import { PolygonBodyOptions } from 'matter_types';
 import { Bodies } from 'matter-js';
-import { MatterSetup } from './../utils/MatterSetup';
+import { MatterSetup } from 'utils/MatterSetup';
 
 // This is a Polygon! It's Polymisterious.
 export class ObjectPolygon extends MatterBody {
   r: number;
   sides: number;
 
-  constructor(theOptions: polygonBodyOptions) {
+  constructor(theOptions: PolygonBodyOptions) {
     super(theOptions);
 
     this.r = theOptions.r;
@@ -18,9 +18,10 @@ export class ObjectPolygon extends MatterBody {
   }
   
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
-  objectShow(thePNG?: HTMLCanvasElement) {
+  show(thePNG?: HTMLCanvasElement) {
+    const invariant = require('invariant');
+    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos = this.body.position;
-    console.log('Is the position correct? ', pos);
     const angle = this.body.angle;
 
     MatterSetup.globalContext.translate(pos.x, pos.y);

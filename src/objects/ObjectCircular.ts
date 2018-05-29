@@ -1,5 +1,5 @@
 import { MatterBody } from './MatterBody';
-import { circularBodyOptions, XYPos } from 'matter_types';
+import { CircularBodyOptions, XYPos } from 'matter_types';
 import { Bodies } from 'matter-js';
 import { MatterSetup } from 'utils/MatterSetup';
 
@@ -7,7 +7,7 @@ import { MatterSetup } from 'utils/MatterSetup';
 export class ObjectCircular extends MatterBody {
   r: number;
 
-  constructor(theOptions: circularBodyOptions) {
+  constructor(theOptions: CircularBodyOptions) {
     super(theOptions);
     this.r = theOptions.r;
 
@@ -15,9 +15,10 @@ export class ObjectCircular extends MatterBody {
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
-  objectShow(thePNG?: HTMLCanvasElement) {
+  show(thePNG?: HTMLCanvasElement) {
+    const invariant = require('invariant');
+    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos: XYPos = this.body.position;
-    console.log('Is the position correct? ', pos);
     const angle: number = this.body.angle;
 
     MatterSetup.globalContext.translate(pos.x, pos.y);

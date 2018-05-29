@@ -15,7 +15,6 @@ export function attractSomeToOne(bodyA: MatterBody, bodyB: MatterBody) {
           MatterSetup.aTAM[x].attracted[y].object.myID === bodyB.myID) {
           let force: XYPos;
           if (MatterSetup.aTAM[x].orbitMin !== undefined) {
-            // console.log("Calculating min orbit Min");
             const anchor: XYPos = {
               x: MatterSetup.aTAM[x].attractor.body.position.x,
               y: MatterSetup.aTAM[x].attractor.body.position.y
@@ -50,7 +49,6 @@ export function attractSomeToOne(bodyA: MatterBody, bodyB: MatterBody) {
             }
           } else {
             if (MatterSetup.aTAM[x].attracted[y].customOrbit > 0) {
-              // console.log("Calculating custom orbit force");
               const anchor: XYPos = {
                 x: MatterSetup.aTAM[x].attractor.body.position.x,
                 y: MatterSetup.aTAM[x].attractor.body.position.y
@@ -84,7 +82,6 @@ export function attractSomeToOne(bodyA: MatterBody, bodyB: MatterBody) {
                 MatterSetup.aTAM[x].attracted[y].stopAttraction = true;
               }
             } else {
-              // console.log("Calculating normal force");
               force = {
                 x: (bodyA.body.position.x - bodyB.body.position.x) * 1e-5,
                 y: (bodyA.body.position.y - bodyB.body.position.y) * 1e-5
