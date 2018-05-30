@@ -1,7 +1,7 @@
 import { GlobalObject } from './GlobalObject';
 import { MatterObjects } from './MatterObjects';
-import { XYPos, BasicBodyOptions, MatterBodyOptions } from 'matter_types';
-import { scaleBody } from 'utils/scaleBody';
+import { XYPos, BasicBodyOptions, MatterBodyOptions } from '../matter_types';
+import { scaleBody } from '../utils/scaleBody';
 
 // Base Matter Object that extends all others below.
 export class MatterBody extends GlobalObject {

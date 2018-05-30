@@ -1,4 +1,4 @@
-import { Circle } from 'matter_types';
+import { Circle } from '../matter_types';
 import { Bounds } from 'matter-js';
 import { MatterSetup } from './MatterSetup';
 

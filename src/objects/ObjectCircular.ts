@@ -1,7 +1,7 @@
 import { MatterBody } from './MatterBody';
-import { CircularBodyOptions, XYPos } from 'matter_types';
+import { CircularBodyOptions, XYPos } from '../matter_types';
 import { Bodies } from 'matter-js';
-import { MatterSetup } from 'utils/MatterSetup';
+import { MatterSetup } from '../utils/MatterSetup';
 
 // This is a circular object. Caution!
 export class ObjectCircular extends MatterBody {

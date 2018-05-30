@@ -1,4 +1,4 @@
-import { ObjectIdentifiers } from 'matter_types';
+import { ObjectIdentifiers } from '../matter_types';
 import { MatterSetup } from './MatterSetup';
 import { randomAlphaMinMaxDeg } from './randomAlphaMinMaxDeg';
 

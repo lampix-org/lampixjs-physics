@@ -1,6 +1,6 @@
-import { MatterBody } from 'objects/MatterBody';
+import { MatterBody } from '../objects/MatterBody';
 import { MatterSetup } from './MatterSetup';
-import { XYPos } from 'matter_types';
+import { XYPos } from '../matter_types';
 import * as Matter from 'matter-js';
 import { getAngleBetweenTwoPoints } from './getAngleBetweenTwoPoints';
 

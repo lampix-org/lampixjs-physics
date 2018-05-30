@@ -1,4 +1,4 @@
-import { MatterBody } from 'objects/MatterBody';
+import { MatterBody } from '../objects/MatterBody';
 import { MatterSetup } from './MatterSetup';
 
 // Adds a new Attractor body to the world.

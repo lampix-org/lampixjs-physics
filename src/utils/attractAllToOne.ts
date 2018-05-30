@@ -1,4 +1,4 @@
-import { MatterBody } from 'objects/MatterBody';
+import { MatterBody } from '../objects/MatterBody';
 
 // This function is used to attract everybody else to the body that has this applied to it.
 export function attractAllToOne(bodyA: MatterBody, bodyB: MatterBody) {

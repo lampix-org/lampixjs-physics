@@ -1,7 +1,7 @@
 import { MatterBody } from './MatterBody';
-import { RectangleBodyOptions, XYPos } from 'matter_types';
+import { RectangleBodyOptions, XYPos } from '../matter_types';
 import { Bodies } from 'matter-js';
-import { MatterSetup } from 'utils/MatterSetup';
+import { MatterSetup } from '../utils/MatterSetup';
 
 // This is a rectangle. Use it wisely.
 export class ObjectRectangle extends MatterBody {
@@ -13,7 +13,7 @@ export class ObjectRectangle extends MatterBody {
     this.w = theOptions.w;
     this.h = theOptions.h;
 
-    this.body = Bodies.rectangle(this.x, this.y, this.w, this.h, this.matterOptions);
+    this.body = Bodies.rectangle(this.x, this.y, this.w, this.h, theOptions.matterOptions);
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!

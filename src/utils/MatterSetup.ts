@@ -1,9 +1,9 @@
 import * as Matter from 'matter-js';
 import { ATAMObject, 
         MatterSetupObject, 
-        RectangleBodyOptions } from 'matter_types';
+        RectangleBodyOptions } from '../matter_types';
 import { createRectangle } from './createRectangle';
-import { GlobalObject } from 'objects/GlobalObject';
+import { GlobalObject } from '../objects/GlobalObject';
 
 // module aliases
 const Engine = Matter.Engine;

@@ -1,4 +1,4 @@
-import { XYPos } from 'matter_types';
+import { XYPos } from '../matter_types';
 
 // Returns the angle between two given points.
 export function getAngleBetweenTwoPoints(anchor: XYPos, point: XYPos) {

@@ -1,4 +1,4 @@
-import { GlobalObject } from 'objects/GlobalObject';
+import { GlobalObject } from '../objects/GlobalObject';
 import { Bounds } from 'matter-js';
 import { MatterSetup } from './MatterSetup';
 

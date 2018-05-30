@@ -1,7 +1,7 @@
-import { ConstraintOptions, XYPos } from 'matter_types';
+import { ConstraintOptions, XYPos } from '../matter_types';
 import { Constraint } from 'matter-js';
 import { MatterObjects } from './MatterObjects';
-import { MatterSetup } from 'utils/MatterSetup';
+import { MatterSetup } from '../utils/MatterSetup';
 
 // You can use a constraint to "tie" two matter objects together, similar to a spring.
 export class ObjectConstraint {

@@ -1,7 +1,7 @@
 import { MatterBody } from './MatterBody';
-import { PolygonBodyOptions } from 'matter_types';
+import { PolygonBodyOptions } from '../matter_types';
 import { Bodies } from 'matter-js';
-import { MatterSetup } from 'utils/MatterSetup';
+import { MatterSetup } from '../utils/MatterSetup';
 
 // This is a Polygon! It's Polymisterious.
 export class ObjectPolygon extends MatterBody {

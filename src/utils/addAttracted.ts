@@ -1,8 +1,8 @@
-import { MatterBody } from 'objects/MatterBody';
+import { MatterBody } from '../objects/MatterBody';
 import { MatterSetup } from './MatterSetup';
 
 // Adds a new attracted body to an attractor.
-export function addAttracted(attractedBody: MatterBody, attractorID: number, customOrbit: number) {
+export function addAttracted(attractedBody: MatterBody, attractorID: number, customOrbit?: number) {
   for (let x: number = 0; x < MatterSetup.aTAM.length; x = x + 1) {
     if (MatterSetup.aTAM[x].attractor.myID === attractorID) {
       const newAttracted = {

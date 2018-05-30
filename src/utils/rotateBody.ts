@@ -1,4 +1,4 @@
-import { MatterBody } from 'objects/MatterBody';
+import { MatterBody } from '../objects/MatterBody';
 import { Body } from 'matter-js';
 
 // For more Body functionalities go to http://brm.io/matter-js/docs/classes/Body.html 

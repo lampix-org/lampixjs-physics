@@ -1,5 +1,5 @@
-import { MatterBody } from 'objects/MatterBody';
-import { XYPos } from 'matter_types';
+import { MatterBody } from '../objects/MatterBody';
+import { XYPos } from '../matter_types';
 import { Body } from 'matter-js';
 
 // For more Body functionalities go to http://brm.io/matter-js/docs/classes/Body.html 
