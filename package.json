@@ -1,5 +1,5 @@
 {
-  "name": "@lampix/library-name",
+  "name": "@lampix/physics",
   "version": "0.1.0",
   "description": "",
   "main": "lib/cjs/index.js",
