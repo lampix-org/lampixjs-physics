@@ -54,8 +54,31 @@ export interface BasicBodyOptions {
 }
 
 export type MatterBodyOptions = {
+  isStatic?: boolean,
+  friction?: number, // Ex: 0.5.
+  elasticity?: number, // Ex: 0.5.
+  angle?: number, // Value of PI.
+  // ...,
+  // // This following code should be used for creating attractors between two bodies, 
+  // // the direction of the force being bodyB towards bodyA (bodyA is the attractor).
+  // // Further examples of these functions can be found below (used them!).
+  // plugin?: {
+  //     attractors: [
+  //         function(bodyA, bodyB) {
+  //             var force = {
+  //             x: (bodyA.position.x - bodyB.position.x) * 1e-6,
+  //             y: (bodyA.position.y - bodyB.position.y) * 1e-6,
+  //             };
 
+  //             // apply force to both bodies
+  //             Body.applyForce(bodyA, bodyA.position, Matter.Vector.neg(force));
+  //             Body.applyForce(bodyB, bodyB.position, force);
+  //         }
+  //     ]
+  // }
 };
+
+// export type 
 
 // Extended options for rectangle bodies.
 export interface RectangleBodyOptions extends BasicBodyOptions {

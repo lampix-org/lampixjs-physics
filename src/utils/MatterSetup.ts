@@ -1,7 +1,7 @@
 import * as Matter from 'matter-js';
-import { aTAMObject, 
-        matterSetupObject, 
-        rectangleBodyOptions } from 'matter_types';
+import { ATAMObject, 
+        MatterSetupObject, 
+        RectangleBodyOptions } from 'matter_types';
 import { createRectangle } from './createRectangle';
 import { GlobalObject } from 'objects/GlobalObject';
 
@@ -13,8 +13,8 @@ const Render = Matter.Render;
 // Optional: The noWalls variable is used to disable canvas border walls.
 export class MatterSetup {
   static globalContext: any;
-  static aTAM: aTAMObject[] = [];
-  static setup: matterSetupObject;
+  static aTAM: ATAMObject[] = [];
+  static setup: MatterSetupObject;
   static engine: any;
   static world: any;
   static render: any;
@@ -22,7 +22,7 @@ export class MatterSetup {
   // All World Objects.
   static worldObjects: GlobalObject[] = [];
 
-  constructor(setupOptions: matterSetupObject) {
+  constructor(setupOptions: MatterSetupObject) {
     Matter.use('matter-attractors');
     MatterSetup.setup = setupOptions;
     MatterSetup.engine = Engine.create();
@@ -67,7 +67,7 @@ export class MatterSetup {
         isStatic: true
       };
 
-      let localOptions: rectangleBodyOptions;
+      let localOptions: RectangleBodyOptions;
       localOptions = {
         x:-25, y:setupOptions.height / 2, w:50, h:setupOptions.height, matterOptions: options
       };
