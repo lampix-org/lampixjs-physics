@@ -1,5 +1,5 @@
 import { GlobalObject } from '../objects/GlobalObject';
-import { Bounds } from 'matter-js';
+import * as Matter from 'matter-js';
 import { MatterSetup } from './MatterSetup';
 
 // This function can be used to check if a body is currently within the screen bounds.
@@ -16,7 +16,7 @@ export function checkOnScreen(theBody: GlobalObject) {
     }
   };
 
-  if (Bounds.overlaps(theBody.body.bounds, newBounds)) {
+  if (Matter.Bounds.overlaps(theBody.body.bounds, newBounds)) {
     return true;
   }
 

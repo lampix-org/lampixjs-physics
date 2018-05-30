@@ -1,4 +1,4 @@
-import { World } from 'matter-js';
+import * as Matter from 'matter-js';
 import { MatterSetup } from './MatterSetup';
 
 // This removes a composite object from the world.
@@ -7,7 +7,7 @@ export function deleteComposite(theComposite: any) {
     if (MatterSetup.worldObjects[x].composite !== undefined) {
       if (theComposite.composite.id === MatterSetup.worldObjects[x].composite.id) {
         // TODO: Make sure this is correct.
-        World.remove(MatterSetup.world, MatterSetup.worldObjects[x].composite);
+        Matter.World.remove(MatterSetup.world, MatterSetup.worldObjects[x].composite);
         MatterSetup.worldObjects.splice(x, 1);
         return;
       }

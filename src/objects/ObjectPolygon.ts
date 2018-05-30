@@ -1,6 +1,6 @@
 import { MatterBody } from './MatterBody';
 import { PolygonBodyOptions } from '../matter_types';
-import { Bodies } from 'matter-js';
+import * as Matter from 'matter-js';
 import { MatterSetup } from '../utils/MatterSetup';
 
 // This is a Polygon! It's Polymisterious.
@@ -14,7 +14,7 @@ export class ObjectPolygon extends MatterBody {
     this.r = theOptions.r;
     this.sides = theOptions.sides;
 
-    this.body = Bodies.polygon(this.x, this.y, this.sides, this.r, theOptions.matterOptions);
+    this.body = Matter.Bodies.polygon(this.x, this.y, this.sides, this.r, theOptions.matterOptions);
   }
   
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!

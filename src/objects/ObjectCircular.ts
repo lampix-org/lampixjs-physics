@@ -1,6 +1,6 @@
 import { MatterBody } from './MatterBody';
 import { CircularBodyOptions, XYPos } from '../matter_types';
-import { Bodies } from 'matter-js';
+import * as Matter from 'matter-js';
 import { MatterSetup } from '../utils/MatterSetup';
 
 // This is a circular object. Caution!
@@ -11,7 +11,7 @@ export class ObjectCircular extends MatterBody {
     super(theOptions);
     this.r = theOptions.r;
 
-    this.body = Bodies.circle(this.x, this.y, this.r, theOptions.matterOptions);
+    this.body = Matter.Bodies.circle(this.x, this.y, this.r, theOptions.matterOptions);
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!

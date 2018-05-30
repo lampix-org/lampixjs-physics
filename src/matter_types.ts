@@ -1,5 +1,4 @@
 import { MatterBody } from './objects/MatterBody';
-import { IBodyDefinition, IBodyRenderOptions, ICollisionFilter } from 'matter-js';
 
 // Simple X,Y point.
 export type XYPos = {

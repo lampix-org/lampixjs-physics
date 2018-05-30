@@ -1,5 +1,5 @@
 import { ConstraintOptions, XYPos } from '../matter_types';
-import { Constraint } from 'matter-js';
+import * as Matter from 'matter-js';
 import { MatterObjects } from './MatterObjects';
 import { MatterSetup } from '../utils/MatterSetup';
 
@@ -19,7 +19,7 @@ export class ObjectConstraint {
     this.growOver = theOptions.growOver;
     this.animSteps = theOptions.animSteps;
 
-    this.constraint = Constraint.create(theOptions.options);
+    this.constraint = Matter.Constraint.create(theOptions.options);
 
     this.bodyID = MatterObjects.bodyID;
     MatterObjects.bodyID = MatterObjects.bodyID + 1;
