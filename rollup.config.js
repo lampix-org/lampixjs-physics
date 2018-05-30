@@ -5,8 +5,12 @@ import typescript from 'rollup-plugin-typescript';
 const ts2 = require('typescript');
 
 const defaults = {
-  name: 'lampix',
-  input: 'src/index.ts'
+  name: 'lampix.physics',
+  input: 'src/index.ts',
+  external: ['@lampix/core'],
+  globals: {
+    '@lampix/core': 'lampix'
+  }
 }
 
 export default [
