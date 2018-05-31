@@ -39,7 +39,7 @@
     ]
   },
   "dependencies": {
-    "@types/matter-js": "0.10.0",
+    "@types/matter-js": "0.10.1",
     "invariant": "2.2.4",
     "matter-attractors": "0.1.6",
     "matter-js": "0.14.1"

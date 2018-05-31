@@ -27,7 +27,11 @@ export default [
         typescript: ts2
       }),
       resolve(),
-      commonjs()
+      commonjs({
+        namedExports: { 
+          'node_modules/matter-js/build/matter.js': 
+            ['Matter', 'Body', 'Engine', 'Render', 'World', 'Bodies', 'use', 'Bounds', 'Constraint'] }
+      })
     ]
   }
 ]
