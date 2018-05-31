@@ -51,7 +51,7 @@ export class MatterSetup {
   static render: any;
 
   // All World Objects.
-  static worldObjects: GlobalObject[] = [];
+  worldObjects: GlobalObject[] = [];
 
   constructor(setupOptions: MatterSetupObject) {
     MatterSetup.setup = setupOptions;
@@ -101,51 +101,51 @@ export class MatterSetup {
       localOptions = {
         x:-25, y:setupOptions.height / 2, w:50, h:setupOptions.height, matterOptions: options
       };
-      createRectangle(localOptions);
+      createRectangle(this, localOptions);
       localOptions = {
         x:setupOptions.width + 25, y:setupOptions.height / 2, w:50, h:setupOptions.height, matterOptions:options
       };
-      createRectangle(localOptions);
+      createRectangle(this, localOptions);
       localOptions = {
         x:setupOptions.width / 2, y:-25, w:setupOptions.width, h:50, matterOptions: options
       };
-      createRectangle(localOptions);
+      createRectangle(this, localOptions);
       localOptions = {
         x:setupOptions.width / 2, y:setupOptions.height + 25, w:setupOptions.width, h:50, matterOptions: options
       };
-      createRectangle(localOptions);
+      createRectangle(this, localOptions);
     }
   }
 
-  utils = { 
-    addAttracted,
-    addAttractor,
-    addAttractorOrbit,
-    applyForceToBody,
-    attractAllToOne,
-    attractSomeToOne,
-    checkIfSpaceOccupied,
-    checkOnScreen,
-    clearMatter,
-    createCircular,
-    // createComposite,
-    createConstraint,
-    createPolygon, 
-    createRectangle,
-    deleteBody,
-    deleteComposite,
-    deleteConstraint,
-    getAngleBetweenTwoPoints,
-    randomAlphaMinMaxDeg,
-    removeAttracted,
-    removeAttractor,
-    rotateBody,
-    scaleBody,
-    scaleBodyOverTime,
-    setPositionOfBody,
-    setStaticToBody,
-    suggestPositionWithinScreenBounds,
-    translateBody,
-    updateMatterEngine
+  utils = {
+    addAttracted: addAttracted.bind(null, this),
+    addAttractor: addAttractor.bind(null, this),
+    addAttractorOrbit: addAttractorOrbit.bind(null, this),
+    applyForceToBody: applyForceToBody.bind(null, this),
+    attractAllToOne: attractAllToOne.bind(null, this),
+    attractSomeToOne: attractSomeToOne.bind(null, this),
+    checkIfSpaceOccupied: checkIfSpaceOccupied.bind(null, this),
+    checkOnScreen: checkOnScreen.bind(null, this),
+    clearMatter: clearMatter.bind(null, this),
+    createCircular: createCircular.bind(null, this),
+    // createComposite: createComposite.bind(null, this),
+    createConstraint: createConstraint.bind(null, this),
+    createPolygon: createPolygon.bind(null, this), 
+    createRectangle: createRectangle.bind(null, this),
+    deleteBody: deleteBody.bind(null, this),
+    deleteComposite: deleteComposite.bind(null, this),
+    deleteConstraint: deleteConstraint.bind(null, this),
+    getAngleBetweenTwoPoints: getAngleBetweenTwoPoints.bind(null, this),
+    randomAlphaMinMaxDeg: randomAlphaMinMaxDeg.bind(null, this),
+    removeAttracted: removeAttracted.bind(null, this),
+    removeAttractor: removeAttractor.bind(null, this),
+    rotateBody: rotateBody.bind(null, this),
+    scaleBody: scaleBody.bind(null, this),
+    scaleBodyOverTime: scaleBodyOverTime.bind(null, this),
+    setPositionOfBody: setPositionOfBody.bind(null, this),
+    setStaticToBody: setStaticToBody.bind(null, this),
+    suggestPositionWithinScreenBounds: suggestPositionWithinScreenBounds.bind(null, this),
+    translateBody: translateBody.bind(null, this),
+    updateMatterEngine: updateMatterEngine.bind(null, this)
   };
 }

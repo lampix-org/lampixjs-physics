@@ -20,7 +20,6 @@ export class ObjectCircular extends MatterBody {
     invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos: XYPos = this.body.position;
     const angle: number = this.body.angle;
-
     MatterSetup.globalContext.translate(pos.x, pos.y);
     MatterSetup.globalContext.rotate(angle);
     if (thePNG) {
