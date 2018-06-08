@@ -1,4 +1,5 @@
 import { MatterBody } from './objects/MatterBody';
+import { IConstraintRenderDefinition } from 'matter-js';
 
 // Simple X,Y point.
 export type XYPos = {
@@ -50,7 +51,7 @@ export interface BasicBodyOptions {
   x: number; 
   y: number;
   // Matter JS Options for creating the physical body.
-  matterOptions: MatterBodyOptions;
+  matterOptions?: MatterBodyOptions;
 }
 
 export interface MatterBodyOptions {
@@ -136,9 +137,9 @@ export interface PolygonBodyOptions extends BasicBodyOptions {
 // Options for creating a Matter Constraint.
 export interface ConstraintOptions {
   options: MatterConstraintOptions;
-  color: string;
-  growOver: number;
-  animSteps: number;
+  color?: string;
+  growOver?: number;
+  animSteps?: number;
 }
 
 // Possible structure of options for creating a Constraint with Matter JS.
@@ -150,4 +151,5 @@ export type MatterConstraintOptions = {
   pointB: XYPos; // the same as above but for the second object,
   length: number; // pixels you want for the line.
   stiffness: number;// 0 for very elastic, 1 for very stiff.
+  render?: IConstraintRenderDefinition;
 };

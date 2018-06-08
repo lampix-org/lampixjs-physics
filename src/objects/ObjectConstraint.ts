@@ -45,16 +45,16 @@ export class ObjectConstraint {
   show() {
     // TODO: Find out if this code is correct.
     const invariant = require('invariant');
-    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
+    invariant(MatterSetup.prototype.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos1: XYPos = this.constraint.pointA;
     const pos2: XYPos = this.constraint.pointB;
 
-    MatterSetup.globalContext.beginPath();
-    MatterSetup.globalContext.moveTo(pos1);
-    MatterSetup.globalContext.lineTo(pos2);
-    MatterSetup.globalContext.lineWidth = 4;
-    MatterSetup.globalContext.strokeStyle = this.color;
-    MatterSetup.globalContext.stroke();
+    MatterSetup.prototype.globalContext.beginPath();
+    MatterSetup.prototype.globalContext.moveTo(pos1);
+    MatterSetup.prototype.globalContext.lineTo(pos2);
+    MatterSetup.prototype.globalContext.lineWidth = 4;
+    MatterSetup.prototype.globalContext.strokeStyle = this.color;
+    MatterSetup.prototype.globalContext.stroke();
   }
 
   update() {

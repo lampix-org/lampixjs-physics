@@ -20,14 +20,14 @@ export class ObjectPolygon extends MatterBody {
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
   show(thePNG?: HTMLCanvasElement) {
     const invariant = require('invariant');
-    invariant(MatterSetup.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
+    invariant(MatterSetup.prototype.setup.noRenderer, 'Matter Render was not enabled! This function cannot be called.');
     const pos = this.body.position;
     const angle = this.body.angle;
 
-    MatterSetup.globalContext.translate(pos.x, pos.y);
-    MatterSetup.globalContext.rotate(angle);
+    MatterSetup.prototype.globalContext.translate(pos.x, pos.y);
+    MatterSetup.prototype.globalContext.rotate(angle);
     if (thePNG) {
-      MatterSetup.globalContext.drawImage(thePNG, 0, 0, this.x + this.r, this.y + this.r);
+      MatterSetup.prototype.globalContext.drawImage(thePNG, 0, 0, this.x + this.r, this.y + this.r);
     } else {
       // TODO: Figure out how to draw a Polygon.
     }

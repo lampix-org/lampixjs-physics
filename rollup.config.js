@@ -26,11 +26,12 @@ export default [
       typescript({
         typescript: ts2
       }),
-      resolve(),
+      resolve({ module: true }),
       commonjs({
         namedExports: { 
           'node_modules/matter-js/build/matter.js': 
-            ['Matter', 'Body', 'Engine', 'Render', 'World', 'Bodies', 'use', 'Bounds', 'Constraint'] }
+            ['Matter', 'Body', 'Engine', 'Render', 'World', 'Bodies', 'use', 'Bounds', 'Constraint']}
+          // 'node_modules/matter-attractors/build/matter-attractors.js': ['MatterAttractors'] }
       })
     ]
   }

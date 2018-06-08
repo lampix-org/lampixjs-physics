@@ -43,24 +43,24 @@ Matter.use('matter-attractors');
 // Call this to setup the Matter library. Give it the width and height of your screen.
 // Optional: The noWalls variable is used to disable canvas border walls.
 export class MatterSetup {
-  static globalContext: any;
-  static aTAM: ATAMObject[] = [];
-  static setup: MatterSetupObject;
-  static engine: any;
-  static world: any;
-  static render: any;
+  globalContext: any;
+  aTAM: ATAMObject[] = [];
+  setup: MatterSetupObject;
+  engine: any;
+  world: any;
+  render: any;
 
   // All World Objects.
   worldObjects: GlobalObject[] = [];
 
   constructor(setupOptions: MatterSetupObject) {
-    MatterSetup.setup = setupOptions;
-    MatterSetup.engine = Engine.create();
+    this.setup = setupOptions;
+    this.engine = Engine.create();
     // engine.enableSleeping = true;
     if (!setupOptions.noRenderer) {
-      MatterSetup.render = Render.create({
+      this.render = Render.create({
         element: document.body,
-        engine: MatterSetup.engine,
+        engine: this.engine,
         options: {
           width: setupOptions.width,
           height: setupOptions.height,
@@ -79,16 +79,16 @@ export class MatterSetup {
           }
         }
       });
-      Render.run(MatterSetup.render);
+      Render.run(this.render);
       // Render.lookAt(render, {
       //   min: { x: 0, y: 0 },
       //   max: { x: width, y: height }
       // });
-      MatterSetup.globalContext = MatterSetup.render.context;
+      this.globalContext = this.render.context;
     }
-    MatterSetup.world = MatterSetup.engine.world;
+    this.world = this.engine.world;
     // We disable the Gravity from the start, not needed for Lampix.
-    MatterSetup.world.gravity.y = 0;
+    this.world.gravity.y = 0;
     // Engine.run(engine);  // Updates the physics as fast as it can, exceeding 60fps.
 
     // Creating border walls around the canvas.
