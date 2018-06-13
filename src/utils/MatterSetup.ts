@@ -1,5 +1,5 @@
 import * as Matter from 'matter-js';
-import 'matter-attractors';
+
 import { ATAMObject, 
         MatterSetupObject, 
         RectangleBodyOptions } from '../matter_types';
