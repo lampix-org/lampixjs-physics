@@ -1,8 +1,10 @@
 import * as Matter from 'matter-js';
 
-import { ATAMObject, 
-        MatterSetupObject, 
-        RectangleBodyOptions } from '../matter_types';
+import {
+  ATAMObject,
+  MatterSetupObject,
+  RectangleBodyOptions
+} from '../matter_types';
 import { GlobalObject } from '../objects/GlobalObject';
 
 import { addAttracted } from 'utils/addAttracted';
@@ -33,6 +35,7 @@ import { setStaticToBody } from 'utils/setStaticToBody';
 import { suggestPositionWithinScreenBounds } from 'utils/suggestPositionWithinScreenBounds';
 import { translateBody } from 'utils/translateBody';
 import { updateMatterEngine } from 'utils/updateMatterEngine';
+import 'matter-attractors';
 
 // module aliases
 const Engine = Matter.Engine;
@@ -69,13 +72,13 @@ export class MatterSetup {
           wireframes: false
         },
         bounds: {
-          min: { 
-            x: 0, 
-            y: 0 
+          min: {
+            x: 0,
+            y: 0
           },
-          max: { 
-            x: setupOptions.width, 
-            y: setupOptions.height 
+          max: {
+            x: setupOptions.width,
+            y: setupOptions.height
           }
         }
       });
@@ -92,26 +95,26 @@ export class MatterSetup {
     // Engine.run(engine);  // Updates the physics as fast as it can, exceeding 60fps.
 
     // Creating border walls around the canvas.
-    if (!setupOptions.noWalls) { 
+    if (!setupOptions.noWalls) {
       const options: object = {
         isStatic: true
       };
 
       let localOptions: RectangleBodyOptions;
       localOptions = {
-        x:-25, y:setupOptions.height / 2, w:50, h:setupOptions.height, matterOptions: options
+        x: -25, y: setupOptions.height / 2, w: 50, h: setupOptions.height, matterOptions: options
       };
       createRectangle(this, localOptions);
       localOptions = {
-        x:setupOptions.width + 25, y:setupOptions.height / 2, w:50, h:setupOptions.height, matterOptions:options
+        x: setupOptions.width + 25, y: setupOptions.height / 2, w: 50, h: setupOptions.height, matterOptions: options
       };
       createRectangle(this, localOptions);
       localOptions = {
-        x:setupOptions.width / 2, y:-25, w:setupOptions.width, h:50, matterOptions: options
+        x: setupOptions.width / 2, y: -25, w: setupOptions.width, h: 50, matterOptions: options
       };
       createRectangle(this, localOptions);
       localOptions = {
-        x:setupOptions.width / 2, y:setupOptions.height + 25, w:setupOptions.width, h:50, matterOptions: options
+        x: setupOptions.width / 2, y: setupOptions.height + 25, w: setupOptions.width, h: 50, matterOptions: options
       };
       createRectangle(this, localOptions);
     }
@@ -130,7 +133,7 @@ export class MatterSetup {
     createCircular: createCircular.bind(null, this),
     // createComposite: createComposite.bind(null, this),
     createConstraint: createConstraint.bind(null, this),
-    createPolygon: createPolygon.bind(null, this), 
+    createPolygon: createPolygon.bind(null, this),
     createRectangle: createRectangle.bind(null, this),
     deleteBody: deleteBody.bind(null, this),
     deleteComposite: deleteComposite.bind(null, this),
