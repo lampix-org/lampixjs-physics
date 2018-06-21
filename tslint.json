@@ -3,16 +3,33 @@
     "extends": [
         "tslint-config-airbnb"
     ],
+    "linterOptions": {
+        "exclude": [
+            "lib/**",
+            "node_modules/**"
+        ]
+    },
     "jsRules": {},
     "rules": {
         "trailing-comma": false,
-        "space-before-function-paren": [true, "never"],
+        "space-before-function-paren": [
+            true,
+            "never"
+        ],
         "import-name": false,
-        "max-line-length": [true, 120],
+        "max-line-length": [
+            true,
+            120
+        ],
         "ter-arrow-parens": false,
         "no-parameter-reassignment": false,
         "object-literal-shorthand": false,
-        "no-param-reassign": [2, { "props": false }]
+        "no-param-reassign": [
+            2,
+            {
+                "props": false
+            }
+        ]
     },
     "rulesDirectory": []
 }

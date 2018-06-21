@@ -3,7 +3,6 @@
 .npm/
 node_modules/
 
-lib/
 docs/
 *.tgz
 .rpt2_cache
