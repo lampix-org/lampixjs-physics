@@ -18,7 +18,7 @@ export default [
   {
     input: defaults.input,
     output: {
-      file: 'lib/umd/index.js',
+      file: 'lib/umd/lampix-physics.js',
       format: 'umd',
       name: defaults.name
     },
@@ -29,10 +29,22 @@ export default [
       // resolve({ module: true }),
       resolve(),
       commonjs({
-        namedExports: { 
-          'node_modules/matter-js/build/matter.js': 
-            ['Matter', 'Body', 'Engine', 'Render', 'World', 'Bodies', 'use', 'Bounds', 'Constraint'],
-          'node_modules/matter-attractors/build/matter-attractors.js': ['matter-attractors'] }
+        namedExports: {
+          'node_modules/matter-js/build/matter.js': [
+            'Matter',
+            'Body',
+            'Engine',
+            'Render',
+            'World',
+            'Bodies',
+            'use',
+            'Bounds',
+            'Constraint'
+          ],
+          'node_modules/matter-attractors/build/matter-attractors.js': [
+            'matter-attractors'
+          ]
+        }
       })
     ]
   }
