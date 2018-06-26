@@ -4,6 +4,9 @@
   "description": "",
   "main": "lib/cjs/index.js",
   "module": "lib/esm/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "types": "lib/cjs/index.d.ts",
   "scripts": {
     "docs": "typedoc --out docs src/index.ts --name Lampix.js --theme minimal --readme README.md",
