@@ -1,16 +1,14 @@
 language: node_js
-node_js: "8"
-
+node_js: '8'
 deploy:
   provider: npm
   email: dbalaban@lampix.co
   api_key:
-    secure: pJezoBPOoKwcyWSlcm6931w78YfJDJFdOPcBQxQ77BfDukzlXvFuxC6/qLsmK4+oUp33QZq3smaaSMEO2oljKnya60KPWvDkHHtp28Or4vgPZi33bTcmXq7s5e7qqbbVsGaaGQ3szeiHFhSv+3/25YaYjsgLQ3+PmTldUXr10TyDZzXEq/EMpYwDN9DlhiMybJPL24Nuhkxbl/mWW3Sfg5Tb2wemja+hdpwU0Ie2aiY5jkzcMjd2GXl3Ocg7egTmWqkroM6HxsY/ZtSP0PjZiPWhRBm152xR7RnS8loMUnwQkc4grmOR9IB7Iyd5ZD+wZARpJvhoDNhvg7l9tsbNelXvWOSO0hH4On5pAWqqksH0FtZwRvLgcNxB45EMfCxSkRjlH5sPx0CqX1mGFii+gjuv5iAU/AI6jAAycVpjswVIpMaPDKf45ma+q+8MOpFPdUWblCEXYwH9EQUhN10Icd/ENSAI8IQoMiguNg+lak5ozCAkKMboyjxElcat629syH+xTEiXXI3FPH6v9ch9wW6nCGu6S9wBW7rxgQr8lGl/4jdkhP9lii/zLGNzAQZqWYkU8LHmMGfaajIypXw4Qhm4mSOy91LRTIqtxNakqcxqMCcucrxjUZnJrMMnqS8Hi0rn6tD4ds3sZhcBfDe/39K7nfTjwzy8pIEH46L4n2s=
+    secure: jLiT6PO/sQ8ny6j/ekpAM1s6KOnR+ZdAnyD8daZ1ukJqN/LDmsl1F23NSinxm8+iLZie6b8LI1IU1ij5tU9bv+NZhb6cIOEbbXBkdhguEbCit+bdsBNgcAeuGJik29ZjO+sEEYiNT113d7miqY7DbLKFaezaFuXx4GoorLFPmWs4Y3DUqZhRZ0J93FHrci1aoefbPeF/NQp3D8T16AILQRSmw9ewGUJeSX/73xar0qBShDKlVucgC/VNYWmGqfNlvkLIEpMbArvSZC2zCXHaGCb3fKtW4/VakcZfhp5wo/wePII4+UCv2eZymZgBzrMDVAKr3YxNq5S0So4rSDKknDJZoceW9iawBmZZ3NZMTlH30GHHipUwHp/K8YL0DmC+XLuoghDYs8q2Rs75rUOOnM1BbdiEs+0TlwjjM+kgVC6Jpxp0whfGp+VZfBC6Pg80RwVbVG1aU40HW3BbqvqF353rmdqjnZr1FgPmMQnxlD42Yu1XNkcQCWWBTBgR5h6sy3ftb14KiLPgYSgw2rOqGn6VJEFjMKeLkuXze1xkkHIGDteG8p03QmkDf/980a3KtAXf0Tiz03yqZeH4jrjamdcDDPgsFMx9fxydTNA0nw4wiy1YsQjLtvlJ8dHpYQy/y1z1mZUepxW8jwlECvKmzXRJJLK5/1e8Dv0eT4kmJLo=
   skip_cleanup: true
   on:
     repo: lampix-org/lampixjs-physics
     all_branches: true
-
 branches:
   only:
-    - /^release\/\d+\.\d+\.\d+$/
+  - "/^release\\/\\d+\\.\\d+\\.\\d+$/"
