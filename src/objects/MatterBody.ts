@@ -18,6 +18,8 @@ export class MatterBody extends GlobalObject {
   
   constructor(theOptions: BasicBodyOptions) {
     super();
+    this.x = theOptions.x;
+    this.y = theOptions.y;
     this.matterOptions = theOptions.matterOptions;
     // Allocating a body ID to the object so that we can find it later.
     this.myID = MatterObjects.bodyID;
