@@ -32,12 +32,16 @@ export type ATAMObject = {
   attracted?: AttractedObject[]
 };
 
+// This object defines an attracted object used in the ATAMObject definition.
+// If customOrbit is defined then that is the orbit for this object. If stopAttraction
+// is defined then this object will not be attracted to the attractor.
 export type AttractedObject = {
   object?: MatterBody,
   customOrbit?: number,
   stopAttraction?: boolean
 };
 
+// Used when creating the @lampix/physics instance.
 export type MatterSetupObject = {
   width: number, 
   height: number, 
@@ -54,6 +58,7 @@ export interface BasicBodyOptions {
   matterOptions?: MatterBodyOptions;
 }
 
+// Matter options for making bodies. Check out the online documentation for more details.
 export interface MatterBodyOptions {
   isStatic?: boolean; // Default: false
   friction?: number; // Default: 0.1
@@ -90,16 +95,19 @@ export interface MatterBodyOptions {
   render?: MatterRenderOptions;
 }
 
+// Used within the MatterBodyOptions for defining collisions.
 export interface MatterColFilterOptions {
   category: number;  // Default: 1
   group: number; // Default: 0
   mask: number; // Default: -1
 }
 
+// Used to specify which attraction function this object is subjected to.
 export interface MatterPluginOptions {
   attractors?: VoidFunction[]; // This must be an attractor function or more.
 }
 
+// These options are needed when you want to define special render options for an object.
 export interface MatterRenderOptions {
   fillStyle?: string; // Default: a random colour
   lineWidth?: number; // Default: 0
@@ -109,6 +117,7 @@ export interface MatterRenderOptions {
   visible?: boolean; // Default: true
 }
 
+// This may be needed when you have special render options for an object with a sprite.
 export interface MatterSpriteOptions {
   texture: string;
   xScale: number;  // Default: 1

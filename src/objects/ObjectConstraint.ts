@@ -2,9 +2,10 @@ import { ConstraintOptions, XYPos } from '../matter_types';
 import * as Matter from 'matter-js';
 import { MatterObjects } from './MatterObjects';
 import { MatterSetup } from '../utils/MatterSetup';
+import { GlobalObject } from './GlobalObject';
 
 // You can use a constraint to "tie" two matter objects together, similar to a spring.
-export class ObjectConstraint {
+export class ObjectConstraint extends GlobalObject{
 
   color: string;
   growOver: number;
@@ -15,6 +16,7 @@ export class ObjectConstraint {
   bodyID: number;
 
   constructor(theOptions: ConstraintOptions) {
+    super();
     this.color = theOptions.color;
     this.growOver = theOptions.growOver;
     this.animSteps = theOptions.animSteps;
