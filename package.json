@@ -8,6 +8,9 @@
   "files": [
     "assets"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "docs": "typedoc --out docs src/index.ts --name Lampix.js --theme minimal --readme README.md",
     "build": "shx rm -rf ./lib && webpack",
@@ -22,11 +25,6 @@
   "devDependencies": {
     "husky": "0.14.3",
     "lint-staged": "6.0.0",
-    "rollup": "0.63.5",
-    "rollup-plugin-commonjs": "8.2.6",
-    "rollup-plugin-css-only": "0.4.0",
-    "rollup-plugin-node-resolve": "3.0.0",
-    "rollup-plugin-typescript": "0.8.1",
     "shx": "0.2.2",
     "ts-loader": "4.4.2",
     "tslint": "5.8.0",
