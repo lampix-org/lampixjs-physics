@@ -6,3 +6,4 @@ node_modules/
 docs/
 *.tgz
 .rpt2_cache
+lib/
