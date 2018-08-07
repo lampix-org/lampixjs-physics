@@ -6,7 +6,8 @@
   "module": "lib/lampix.js",
   "types": "lib/src/index.d.ts",
   "files": [
-    "assets"
+    "assets",
+    "lib"
   ],
   "publishConfig": {
     "access": "public"
