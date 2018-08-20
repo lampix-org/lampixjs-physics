@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'lampix.js',
-    library: 'lampix',
+    library: ['lampix', 'physics'],
     libraryTarget: 'umd'
   },
   module: {
