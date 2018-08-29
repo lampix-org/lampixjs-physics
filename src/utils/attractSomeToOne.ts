@@ -10,7 +10,7 @@ export function attractSomeToOne(ms: any, bodyA: MatterBody, bodyB: MatterBody) 
   for (let x: number = 0; x < ms.aTAM.length; x = x + 1) {
     if (ms.aTAM[x].attractor.myID === bodyA.myID) {
       for (let y: number = 0; y < ms.aTAM[x].attracted.length; y = y + 1) {
-        if (ms.aTAM[x].attracted[y].stopAttraction === false && 
+        if (ms.aTAM[x].attracted[y].stopAttraction === false &&
           ms.aTAM[x].attracted[y].object.myID === bodyB.myID) {
           let force: XYPos;
           if (ms.aTAM[x].orbitMin !== undefined) {
@@ -24,9 +24,9 @@ export function attractSomeToOne(ms: any, bodyA: MatterBody, bodyB: MatterBody) 
             };
             const angleBetween = getAngleBetweenTwoPoints(anchor, point);
             // var dx = (aTAM[x].orbitMin + bodyA.position.x) * Math.sin(angleBetween);
-            const dx = bodyA.body.position.x + Math.sin(angleBetween) * ms.aTAM[x].orbitMin;
+            const dx = bodyA.body.position.x + Math.cos(angleBetween / 180 * Math.PI) * ms.aTAM[x].orbitMin;
             // var dy = (aTAM[x].orbitMin + bodyA.position.y) * Math.cos(angleBetween);
-            const dy = bodyA.body.position.y + Math.cos(angleBetween) * ms.aTAM[x].orbitMin;
+            const dy = bodyA.body.position.y + (Math.sin(angleBetween / 180 * Math.PI) * ms.aTAM[x].orbitMin * -1);
             const xDiff = Math.abs(dx) - bodyB.body.position.x;
             const yDiff = Math.abs(dy) - bodyB.body.position.y;
             // force = {
@@ -58,9 +58,11 @@ export function attractSomeToOne(ms: any, bodyA: MatterBody, bodyB: MatterBody) 
               };
               const angleBetween = getAngleBetweenTwoPoints(anchor, point);
               // var dx = (aTAM[x].attracted[y].customOrbit + bodyA.position.x) * Math.sin(angleBetween);
-              const dx = bodyA.body.position.x + Math.sin(angleBetween) * ms.aTAM[x].attracted[y].customOrbit;
+              const dx = bodyA.body.position.x + Math.cos(angleBetween / 180 * Math.PI)
+                * ms.aTAM[x].attracted[y].customOrbit;
               // var dy = (aTAM[x].attracted[y].customOrbit + bodyA.position.y) * Math.cos(angleBetween);
-              const dy = bodyA.body.position.y + Math.cos(angleBetween) * ms.aTAM[x].attracted[y].customOrbit;
+              const dy = bodyA.body.position.y + (Math.sin(angleBetween / 180 * Math.PI)
+                * ms.aTAM[x].attracted[y].customOrbit * -1);
               const xDiff = Math.abs(dx) - bodyB.body.position.x;
               const yDiff = Math.abs(dy) - bodyB.body.position.y;
               // force = {
