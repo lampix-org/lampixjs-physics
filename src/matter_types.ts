@@ -43,16 +43,18 @@ export type AttractedObject = {
 
 // Used when creating the @lampix/physics instance.
 export type MatterSetupObject = {
-  width: number, 
-  height: number, 
+  width: number,
+  height: number,
   noWalls: boolean,
-  noRenderer: boolean
+  noRenderer: boolean,
+  gravityX?: number,
+  gravityY?: number
 };
 
 // This interface defines the basic attributes that any and all matter bodies need.
 export interface BasicBodyOptions {
   // Basic attributes.
-  x: number; 
+  x: number;
   y: number;
   // Matter JS Options for creating the physical body.
   matterOptions?: MatterBodyOptions;
@@ -87,11 +89,11 @@ export interface MatterBodyOptions {
   // This object can be used to define filterinf options for the body.
   // See http://brm.io/matter-js/docs/classes/Body.html for further details.
   collisionFilter?: MatterColFilterOptions;
-  // This following code should be used for creating attractors between two bodies, 
+  // This following code should be used for creating attractors between two bodies,
   // the direction of the force being bodyB towards bodyA (bodyA is the attractor).
   // If you want to use other Matter.JS plugins you'll need to add them to npm yourself.
   plugin?: MatterPluginOptions;
-  // The render options are needed when you 
+  // The render options are needed when you
   render?: MatterRenderOptions;
 }
 
@@ -154,11 +156,11 @@ export interface ConstraintOptions {
 // Possible structure of options for creating a Constraint with Matter JS.
 export type MatterConstraintOptions = {
   bodyA: Matter.Body; // any body object.
-  bodyB: Matter.Body;// any other body.
+  bodyB: Matter.Body; // any other body.
   pointA: XYPos; // Just an offset for the first point if you don't want the constraint to start
                  // from the middle of the first object.
   pointB: XYPos; // the same as above but for the second object,
   length: number; // pixels you want for the line.
-  stiffness: number;// 0 for very elastic, 1 for very stiff.
+  stiffness: number; // 0 for very elastic, 1 for very stiff.
   render?: IConstraintRenderDefinition;
 };

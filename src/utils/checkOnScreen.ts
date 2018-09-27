@@ -6,12 +6,12 @@ import * as Matter from 'matter-js';
 export function checkOnScreen(ms: any, theBody: GlobalObject) {
   const newBounds = {
     min: {
-      x: ms.render.bounds.min.x,
-      y: ms.render.bounds.min.y
+      x: 0, // ms.render.bounds.min.x,
+      y: 0 // ms.render.bounds.min.y
     },
     max: {
-      x: ms.render.bounds.max.x,
-      y: ms.render.bounds.max.y
+      x: ms.setup.width, // ms.render.bounds.max.x,
+      y: ms.setup.height // ms.render.bounds.max.y
     }
   };
 

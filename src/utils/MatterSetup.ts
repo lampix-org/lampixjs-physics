@@ -36,6 +36,7 @@ import { suggestPositionWithinScreenBounds } from '../utils/suggestPositionWithi
 import { translateBody } from '../utils/translateBody';
 import { updateMatterEngine } from '../utils/updateMatterEngine';
 import 'matter-attractors';
+import { setGravity } from './setGravity';
 
 // module aliases
 const Engine = Matter.Engine;
@@ -52,6 +53,7 @@ export class MatterSetup {
   engine: any;
   world: any;
   render: any;
+  Matter = Matter;
 
   // All World Objects.
   worldObjects: GlobalObject[] = [];
@@ -90,8 +92,17 @@ export class MatterSetup {
       this.globalContext = this.render.context;
     }
     this.world = this.engine.world;
-    // We disable the Gravity from the start, not needed for Lampix.
-    this.world.gravity.y = 0;
+    // Check to see if the gravity was given, else disable it.
+    if (setupOptions.gravityY === undefined) {
+      this.world.gravity.y = 0;
+    } else {
+      this.world.gravity.y = setupOptions.gravityY;
+    }
+    if (setupOptions.gravityX === undefined) {
+      this.world.gravity.x = 0;
+    } else {
+      this.world.gravity.x = setupOptions.gravityX;
+    }
     // Engine.run(engine);  // Updates the physics as fast as it can, exceeding 60fps.
 
     // Creating border walls around the canvas.
@@ -145,6 +156,7 @@ export class MatterSetup {
     rotateBody: rotateBody.bind(null),
     scaleBody: scaleBody.bind(null),
     scaleBodyOverTime: scaleBodyOverTime.bind(null),
+    setGravity: setGravity.bind(null, this),
     setPositionOfBody: setPositionOfBody.bind(null),
     setStaticToBody: setStaticToBody.bind(null),
     suggestPositionWithinScreenBounds: suggestPositionWithinScreenBounds.bind(null, this),
