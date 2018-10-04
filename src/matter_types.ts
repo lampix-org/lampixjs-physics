@@ -145,6 +145,13 @@ export interface PolygonBodyOptions extends BasicBodyOptions {
   sides:number;
 }
 
+export interface IrregularBodyOptions extends BasicBodyOptions {
+  vertices: XYPos[];
+  colorStroke?: string;
+  colorFill?: string;
+  lineWidth?: number;
+}
+
 // Options for creating a Matter Constraint.
 export interface ConstraintOptions {
   options: MatterConstraintOptions;

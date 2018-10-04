@@ -20,6 +20,7 @@ import { createCircular } from '../utils/createCircular';
 import { createConstraint } from '../utils/createConstraint';
 import { createPolygon } from '../utils/createPolygon';
 import { createRectangle } from '../utils/createRectangle';
+import { createIrregular } from '../utils/createIrregular';
 import { deleteBody } from '../utils/deleteBody';
 import { deleteComposite } from '../utils/deleteComposite';
 import { deleteConstraint } from '../utils/deleteConstraint';
@@ -146,6 +147,7 @@ export class MatterSetup {
     createConstraint: createConstraint.bind(null, this),
     createPolygon: createPolygon.bind(null, this),
     createRectangle: createRectangle.bind(null, this),
+    createIrregular: createIrregular.bind(null, this),
     deleteBody: deleteBody.bind(null, this),
     deleteComposite: deleteComposite.bind(null, this),
     deleteConstraint: deleteConstraint.bind(null, this),
