@@ -11,4 +11,5 @@ export function addAttractor(ms: any, attractorBody: MatterBody) {
     attractor: attractorBody
   };
   ms.aTAM.push(newHierarchy);
+  ms.aTAM[ms.aTAM.length - 1].attracted = [];
 }
