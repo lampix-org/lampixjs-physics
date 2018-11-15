@@ -48,7 +48,8 @@ export type MatterSetupObject = {
   noWalls: boolean,
   noRenderer: boolean,
   gravityX?: number,
-  gravityY?: number
+  gravityY?: number,
+  enableSleeping?: boolean
 };
 
 // This interface defines the basic attributes that any and all matter bodies need.
@@ -56,6 +57,8 @@ export interface BasicBodyOptions {
   // Basic attributes.
   x: number;
   y: number;
+  // This is an optional function used when the body goes to sleep.
+  onSleepCallback?: Function;
   // Matter JS Options for creating the physical body.
   matterOptions?: MatterBodyOptions;
 }

@@ -104,6 +104,11 @@ export class MatterSetup {
     } else {
       this.world.gravity.x = setupOptions.gravityX;
     }
+
+    if (setupOptions.enableSleeping !== undefined &&
+      setupOptions.enableSleeping) {
+      this.engine.enableSleeping = true;
+    }
     // Engine.run(engine);  // Updates the physics as fast as it can, exceeding 60fps.
 
     // Creating border walls around the canvas.

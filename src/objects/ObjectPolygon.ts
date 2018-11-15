@@ -15,8 +15,13 @@ export class ObjectPolygon extends MatterBody {
     this.sides = theOptions.sides;
 
     this.body = Matter.Bodies.polygon(this.x, this.y, this.sides, this.r, theOptions.matterOptions);
+
+    if (theOptions.onSleepCallback !== undefined) {
+      this.body.sleepThreshold = 15;
+      Matter.Events.on(this.body, 'sleepStart', theOptions.onSleepCallback());
+    }
   }
-  
+
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
   show(thePNG?: HTMLCanvasElement) {
     const invariant = require('invariant');

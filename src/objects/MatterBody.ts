@@ -15,7 +15,7 @@ export class MatterBody extends GlobalObject {
   toScaleX: number;
   toScaleY: number;
   point: XYPos;
-  
+
   constructor(theOptions: BasicBodyOptions) {
     super();
     this.x = theOptions.x;
@@ -25,7 +25,7 @@ export class MatterBody extends GlobalObject {
     this.myID = MatterObjects.bodyID;
     MatterObjects.bodyID = MatterObjects.bodyID + 1;
   }
-  
+
   // Used to update the object. For now you can update the object scale in case such an animation over time is desired.
   // Make sure you don't forget to scale the graphics with it as well.
   update() {
@@ -37,7 +37,7 @@ export class MatterBody extends GlobalObject {
       }
     }
   }
-  
+
   // Used to scale the physical object over time. Make sur you adapt the graphics after calling this.
   // onX is used to stretch on the X axis, onY for the Y axis; point is the point from which the stretching begins;
   // deltaT is the amount of time that the scaling is going to be done over.
@@ -52,19 +52,19 @@ export class MatterBody extends GlobalObject {
       this.point = null;
     }
   }
-  
+
   // Sets the amount of friction that this body will exert on others.
   // 0 for no friction, 1 for very high friction.
   setFriction(newFriction: number) {
     this.body.friction = newFriction;
   }
-  
+
   // Sets the elasticity of the body experienced when it collides with others.
   // 0 for no elasticity, 1 for 100% kinetic bounce.
   setElasticity(newElasticity: number) {
     this.body.restitution = newElasticity;
   }
-  
+
   // Sets a new angle for the body. Messing with the body's angle may have a negative impact on the physics engine.
   setNewAngle(newAngle: number) {
     this.body.setAngle(newAngle);

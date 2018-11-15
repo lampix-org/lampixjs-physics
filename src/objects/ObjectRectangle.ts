@@ -14,6 +14,11 @@ export class ObjectRectangle extends MatterBody {
     this.h = theOptions.h;
 
     this.body = Matter.Bodies.rectangle(this.x, this.y, this.w, this.h, theOptions.matterOptions);
+
+    if (theOptions.onSleepCallback !== undefined) {
+      this.body.sleepThreshold = 15;
+      Matter.Events.on(this.body, 'sleepStart', theOptions.onSleepCallback());
+    }
   }
 
   // This can be used to draw the object manually. WARNING! Matter Render must be enabled for this to work!
