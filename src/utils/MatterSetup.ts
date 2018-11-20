@@ -72,7 +72,7 @@ export class MatterSetup {
           height: setupOptions.height,
           // background: '#000000',
           // showAngleIndicator: false,
-          wireframes: false
+          wireframes: setupOptions.debugWireFrames
         },
         bounds: {
           min: {

@@ -17,12 +17,12 @@ export class ObjectRectangle extends MatterBody {
 
     if (theOptions.onSleepStart !== undefined) {
       this.body.sleepThreshold = 15;
-      Matter.Events.on(this.body, 'sleepStart', theOptions.onSleepStart());
+      Matter.Events.on(this.body, 'sleepStart', () => { theOptions.onSleepStart(); });
     }
 
     if (theOptions.onSleepStop !== undefined) {
       this.body.sleepThreshold = 15;
-      Matter.Events.on(this.body, 'sleepStop', theOptions.onSleepStop());
+      Matter.Events.on(this.body, 'sleepEnd', () => { theOptions.onSleepStop(); });
     }
   }
 

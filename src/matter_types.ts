@@ -49,7 +49,8 @@ export type MatterSetupObject = {
   noRenderer: boolean,
   gravityX?: number,
   gravityY?: number,
-  enableSleeping?: boolean
+  enableSleeping?: boolean,
+  debugWireFrames?: boolean
 };
 
 // This interface defines the basic attributes that any and all matter bodies need.
