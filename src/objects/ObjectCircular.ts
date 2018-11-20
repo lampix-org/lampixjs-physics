@@ -13,9 +13,14 @@ export class ObjectCircular extends MatterBody {
 
     this.body = Matter.Bodies.circle(this.x, this.y, this.r, theOptions.matterOptions);
 
-    if (theOptions.onSleepCallback !== undefined) {
+    if (theOptions.onSleepStart !== undefined) {
       this.body.sleepThreshold = 15;
-      Matter.Events.on(this.body, 'sleepStart', theOptions.onSleepCallback());
+      Matter.Events.on(this.body, 'sleepStart', theOptions.onSleepStart());
+    }
+
+    if (theOptions.onSleepStop !== undefined) {
+      this.body.sleepThreshold = 15;
+      Matter.Events.on(this.body, 'sleepStop', theOptions.onSleepStop());
     }
   }
 

@@ -57,8 +57,9 @@ export interface BasicBodyOptions {
   // Basic attributes.
   x: number;
   y: number;
-  // This is an optional function used when the body goes to sleep.
-  onSleepCallback?: Function;
+  // This is an optional function used when the body goes to sleep or wakes up.
+  onSleepStart?: Function;
+  onSleepStop?: Function;
   // Matter JS Options for creating the physical body.
   matterOptions?: MatterBodyOptions;
 }
@@ -81,7 +82,7 @@ export interface MatterBodyOptions {
   label?: string; // Default: "body"
   parent?: Matter.Body; // Self reference if not part of another body.
   parts?: Matter.Body[];  // An array of bodies that compose this one.
-  posision?: XYPos; // Default: { x: 0, y: 0 }
+  position?: XYPos; // Default: { x: 0, y: 0 }
   restitution?: number; // Default: 0
   sleepThreshold?: number;  // Default: 60
   slop?: number;  // Default: 0.05
