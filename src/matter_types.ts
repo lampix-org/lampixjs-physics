@@ -144,6 +144,12 @@ export interface CircularBodyOptions extends BasicBodyOptions {
   r: number;
 }
 
+// Extended options for Rail Bearings.
+export interface RailBearingOptions extends CircularBodyOptions {
+  id: number;
+  parentId?: number;
+}
+
 // Extended options for polygonal bodies.
 export interface PolygonBodyOptions extends BasicBodyOptions {
   r: number;
@@ -176,3 +182,9 @@ export type MatterConstraintOptions = {
   stiffness: number; // 0 for very elastic, 1 for very stiff.
   render?: IConstraintRenderDefinition;
 };
+
+// Structure used to define the creation of a Slider Rail.
+export interface SliderRailOptions extends RectangleBodyOptions {
+  id: number;
+  bearings?: RailBearingOptions[];
+}

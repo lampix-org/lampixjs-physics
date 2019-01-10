@@ -38,6 +38,9 @@ import { translateBody } from '../utils/translateBody';
 import { updateMatterEngine } from '../utils/updateMatterEngine';
 import 'matter-attractors';
 import { setGravity } from './setGravity';
+import { createRailBearing } from './createRailBearing';
+import { createSliderRail } from './createSliderRail';
+import { deleteSliderRail } from './deleteSliderRail';
 
 // module aliases
 const Engine = Matter.Engine;
@@ -148,7 +151,8 @@ export class MatterSetup {
     checkOnScreen: checkOnScreen.bind(null, this),
     clearMatter: clearMatter.bind(null, this),
     createCircular: createCircular.bind(null, this),
-    // createComposite: createComposite.bind(null, this),
+    createRailBearing: createRailBearing.bind(null, this),
+    createSliderRail: createSliderRail.bind(null, this),
     createConstraint: createConstraint.bind(null, this),
     createPolygon: createPolygon.bind(null, this),
     createRectangle: createRectangle.bind(null, this),
@@ -156,6 +160,7 @@ export class MatterSetup {
     deleteBody: deleteBody.bind(null, this),
     deleteComposite: deleteComposite.bind(null, this),
     deleteConstraint: deleteConstraint.bind(null, this),
+    deleteSliderRail: deleteSliderRail.bind(null, this),
     getAngleBetweenTwoPoints: getAngleBetweenTwoPoints.bind(null),
     randomAlphaMinMaxDeg: randomAlphaMinMaxDeg.bind(null),
     removeAttracted: removeAttracted.bind(null, this),
