@@ -1,6 +1,6 @@
 {
   "name": "@lampix/physics",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "",
   "main": "lib/lampix.js",
   "module": "lib/lampix.js",
