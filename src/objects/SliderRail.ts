@@ -6,6 +6,8 @@ import { createRailBearing } from '../utils/createRailBearing';
 import { ObjectRectangle } from './ObjectRectangle';
 import { createRectangle } from '../utils/createRectangle';
 import { deleteBody } from '../utils/deleteBody';
+import { createConstraint } from '../utils/createConstraint';
+import { deleteConstraint } from '../utils/deleteConstraint';
 
 // This object defines a Rail object which can be placed anywhere on
 // or off the screen and to which constraint points can be linked.
@@ -81,13 +83,26 @@ export class SliderRail extends MatterBody {
         if (bearing.x > this.w / 2 + this.x) {
           bearing.x = this.w / 2 + this.x - 12;
         }
-        // if (bearing.y < this.y) {
+        // if (bearing.y < this.y - this.w / 2 - 5) {
         //   bearing.y = this.y - 1;
         // }
-        if (bearing.y >= this.y) {
+        if (bearing.y >= this.y - this.h / 2) {
           bearing.y = this.y - this.h / 2 - 1;
         }
         const newBearing: RailBearing = createRailBearing(ms, bearing);
+        if (bearing.targetObject != null) {
+          const constOptions = {
+            options: {
+              bodyA: newBearing.body,
+              bodyB: bearing.targetObject.body,
+              length: bearing.targetObject.y - newBearing.y,
+              stiffness: 0.8
+            }
+          };
+          const newConstraint = createConstraint(ms, constOptions);
+          newBearing.constraint = newConstraint;
+          newBearing.targetObject = bearing.targetObject;
+        }
         this.bearings.push(newBearing);
       });
     }
@@ -108,13 +123,31 @@ export class SliderRail extends MatterBody {
     }
     bearing.parentId = this.id;
     const newBearing = createRailBearing(this.ms, bearing);
+    if (bearing.targetObject != null) {
+      const constOptions = {
+        options: {
+          bodyA: newBearing.body,
+          bodyB: bearing.targetObject.body,
+          length: bearing.targetObject.y - newBearing.y,
+          stiffness: 0.8
+        }
+      };
+      const newConstraint = createConstraint(this.ms, constOptions);
+      newBearing.constraint = newConstraint;
+      newBearing.targetObject = bearing.targetObject;
+    }
     this.bearings.push(newBearing);
   }
 
   removeBearing(targetId: number) {
     for (let x: number = this.bearings.length - 1; x >= 0; x -= 1) {
       if (this.bearings[x].id === targetId) {
-        deleteBody(this.ms, this.bearings[x].body);
+        if (this.bearings[x].body !== undefined) {
+          deleteBody(this.ms, this.bearings[x].body);
+        }
+        if (this.bearings[x].constraint != null) {
+          deleteConstraint(this.ms, this.bearings[x].constraint);
+        }
         this.bearings.splice(x, 1);
         return;
       }
@@ -125,6 +158,41 @@ export class SliderRail extends MatterBody {
     for (let x: number = this.bearings.length - 1; x >= 0; x -= 1) {
       if (this.bearings[x].id === targetId) {
         return this.bearings[x];
+      }
+    }
+  }
+
+  linkToSlider(targetObject: MatterBody, targetBearing?: RailBearing) {
+    if (targetBearing != null) {
+      const constOptions = {
+        options: {
+          bodyA: targetBearing.body,
+          bodyB: targetObject.body,
+          length: targetObject.y - targetBearing.y,
+          stiffness: 0.8
+        }
+      };
+      const newConstraint = createConstraint(this.ms, constOptions);
+      targetBearing.constraint = newConstraint;
+      targetBearing.targetObject = targetObject;
+    } else {
+      const bearingOptions: RailBearingOptions = {
+        x: targetObject.x,
+        y: 100,
+        r: 4,
+        id: this.bearings[this.bearings.length - 1].id + 1,
+        parentId: this.id,
+        targetObject: targetObject
+      };
+      this.addBearing(bearingOptions);
+    }
+  }
+
+  unlinkFromSlider(targetObject: MatterBody) {
+    for (let x: number = this.bearings.length - 1; x >= 0; x -= 1) {
+      if (this.bearings[x].targetObject === targetObject) {
+        this.removeBearing(this.bearings[x].id);
+        return;
       }
     }
   }

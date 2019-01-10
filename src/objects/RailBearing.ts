@@ -1,12 +1,16 @@
 import { RailBearingOptions } from 'matter_types';
 import { MatterBody } from './MatterBody';
 import Matter from 'matter-js';
+import { ObjectConstraint } from './ObjectConstraint';
+import { MatterObjects } from './MatterObjects';
 
 // This is a round object used on top of the Rail.
 export class RailBearing extends MatterBody {
   r: number;
   id: number;
   parentId: number;
+  constraint?: ObjectConstraint;
+  targetObject?: MatterObjects;
 
   constructor(theOptions: RailBearingOptions) {
     super(theOptions);

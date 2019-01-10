@@ -148,6 +148,7 @@ export interface CircularBodyOptions extends BasicBodyOptions {
 export interface RailBearingOptions extends CircularBodyOptions {
   id: number;
   parentId?: number;
+  targetObject?: MatterBody;
 }
 
 // Extended options for polygonal bodies.
@@ -175,9 +176,9 @@ export interface ConstraintOptions {
 export type MatterConstraintOptions = {
   bodyA: Matter.Body; // any body object.
   bodyB: Matter.Body; // any other body.
-  pointA: XYPos; // Just an offset for the first point if you don't want the constraint to start
+  pointA?: XYPos; // Just an offset for the first point if you don't want the constraint to start
                  // from the middle of the first object.
-  pointB: XYPos; // the same as above but for the second object,
+  pointB?: XYPos; // the same as above but for the second object,
   length: number; // pixels you want for the line.
   stiffness: number; // 0 for very elastic, 1 for very stiff.
   render?: IConstraintRenderDefinition;
